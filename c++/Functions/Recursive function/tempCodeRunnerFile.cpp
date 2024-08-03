@@ -1,0 +1,1 @@
+lastposition(array,n,0);
