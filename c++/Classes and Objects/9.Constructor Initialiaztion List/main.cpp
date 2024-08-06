@@ -42,6 +42,7 @@ class Player{
         }
     Player::Player(string name_str,int health_str,int xp_str)
         :name{name_str},health{health_str},xp{xp_str}{
+        //:Player{name_str,health_str,xp_str}{
             cout<<"All args-Constuctor."<<endl;
         }    
 

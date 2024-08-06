@@ -40,9 +40,10 @@ class Player
 int main(){
     Player frank{};
     frank.set_name("Frank");
-    cout<<frank.get_name();
+    cout<<frank.get_name()<<'\n';
 
     Player hello{"john",97,4};
+    cout<<hello.get_name();
 
 
     return 0;
