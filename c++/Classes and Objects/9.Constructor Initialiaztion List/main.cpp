@@ -6,7 +6,7 @@ using std::endl;
 
 class Player{
     //Attributes
-    string name{"xxxxxxxx"};
+    string name{};
     int health{};
     int xp{};
 
@@ -42,7 +42,7 @@ class Player{
         }
     Player::Player(string name_str,int health_str,int xp_str)
         :name{name_str},health{health_str},xp{xp_str}{
-        //:Player{name_str,health_str,xp_str}{
+        //:Player{name_str,health_str,xp_str} // this will not work as there are no thre args constructor to be called execept this one
             cout<<"All args-Constuctor."<<endl;
         }    
 
