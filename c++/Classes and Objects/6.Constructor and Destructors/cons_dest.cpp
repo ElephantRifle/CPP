@@ -55,6 +55,10 @@ int main(){
     Player *level_boss = new Player("Boss",100,0);
     level_boss->set_name("Boss");
     
+    /*Typically Destructor will be called for object which was executed 
+    last or when its scope ends but in case of dynamically allocated objects 
+    created with pointers the constructor will be called first for the one which
+    has delete keyword first.*/
     delete enemy;
     delete level_boss;
 

@@ -17,8 +17,9 @@ class Player{
     Player(string name_val,int health_val,int xp_val);
 
 };
+    // Normal way of initializing Class Attributes or we can say reassignment
     // Player::Player(){
-    //     name = "Empty";
+    //     name = "Empty";         //assignment not initialization
     //     health = 0;
     //     xp = 0;
     // }

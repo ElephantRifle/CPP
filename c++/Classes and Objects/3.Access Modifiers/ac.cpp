@@ -20,7 +20,7 @@ int main(){
     //Compiler errors! these attributes are private
     // frank.name="HEllo";
     // frank.health=100;
-    frank.talk("says Hello");//It will run as we are accessing public method
+    frank.talk(" says Hello");//It will run as we are accessing public method
     
 
     return 0;
