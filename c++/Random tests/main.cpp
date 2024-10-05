@@ -57,5 +57,20 @@ int main(){
   // cout<<*p<<endl;
   // cout<<p<<endl;
 
+  int a{12};
+  int b{10};
+
+  int *c{&a};
+  
+  cout<<&a<<endl;
+  cout<<c<<endl;
+  *c = 12;
+  cout<<&a<<endl;
+  cout<<*c<<endl;
+
+
+  delete c;
+
+
     return 0;
 }
