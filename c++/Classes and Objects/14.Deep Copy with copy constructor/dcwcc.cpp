@@ -7,16 +7,20 @@ class Deep{
     int *data{};
 
     public:
+
     //Methods
     void set_data(int d){*data = d;}
+
     int get_data(){return *data;}
 
     //Constructor
-    Deep(int d){};
+    Deep(int d);
+
     //Copy Constructor
     Deep(const Deep& source);
+
     //Destructor
-    ~Deep(){};
+    ~Deep();
 
 
 };
@@ -25,24 +29,27 @@ Deep::Deep(int d){
     data = new int;
     *data = d;
 }
-//Copy Constructor
+
+//Copy Constructor(Deep Copy)
 Deep::Deep(const Deep& source){
     data = new int;
     *data = *source.data;
     cout<<""<<endl;   
 }
+
 //Destructor
 Deep::~Deep(){
-    delete data;
+    delete data;   //Free Allocated Memory
     cout<<"Destructor freeing data. "<<endl;
 }
+
 //Funtion 
 void display_deep(Deep s){
     s.get_data();
 }
 
 int main(){
-    Deep obj1{100};
+    Deep obj1{100};     
     display_deep(obj1);
 
     obj1.set_data(1000);

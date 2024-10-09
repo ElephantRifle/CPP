@@ -9,6 +9,8 @@ class shallow{
     int *data;
 
     public:
+    
+    //Methods
     void set_value(int d){
         *data = d;
     }
@@ -18,8 +20,10 @@ class shallow{
 
     //Constructor
     shallow(int d);
+
     //Copy Constructor
     shallow(const shallow &source);
+
     //Destructor
     ~shallow();
 };
@@ -28,16 +32,19 @@ shallow::shallow(int d){
     data = new int;
     *data = d;
 }
-//Copy Constructor Definition
+
+//Copy Constructor Definition(Shallow Copy)
 shallow::shallow(const shallow &source)
   :data(source.data){
     cout<<"Copy constructor - shallow copy"<<endl;
 }
+
 //Destructor Definition
 shallow::~shallow(){
     delete data;
     cout<<"Destructor freeing data."<<endl;
 }
+
 void display_shallow(shallow s){
     cout<<s.get_value()<<endl;
 }
