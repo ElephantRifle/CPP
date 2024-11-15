@@ -34,16 +34,16 @@ class Player{
     //     xp = xp_val;
     // }
     Player::Player()
-        :Player{"Empty",0,0}{
+        :Player{"Empty",0,0}{           //Constructor Initialization with Delegation
             cout<<"No args Consructor."<<'\n';
         }
     Player::Player(string name_str)
-        :Player{name_str,0,0}{
+        :Player{name_str,0,0}{          //Constructor Initialization with Delegation
             cout<<"One-args Constructor."<<'\n';
         }
     Player::Player(string name_str,int health_str,int xp_str)
-        :name{name_str},health{health_str},xp{xp_str}{
-        //:Player{name_str,health_str,xp_str} // this will not work as there are no thre args constructor to be called execept this one
+        :name{name_str},health{health_str},xp{xp_str}{  //Constructor Initialization 
+        //:Player{name_str,health_str,xp_str} // this will not work as there are no three args constructor to be called execept this one
             cout<<"All args-Constuctor."<<endl;
         }    
 

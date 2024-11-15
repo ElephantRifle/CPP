@@ -8,9 +8,9 @@ class Deep{
 
     public:
 
-    //Methods
+    //Set value Method
     void set_data(int d){*data = d;}
-
+    //Return Value Method
     int get_data(){return *data;}
 
     //Constructor
@@ -31,10 +31,14 @@ Deep::Deep(int d){
 }
 
 //Copy Constructor(Deep Copy)
-Deep::Deep(const Deep& source){
+/*We can use delegating constructor as Regular cons is doing the same thing as copy 
+cons(assigning new space in heap)*/
+Deep::Deep(const Deep& source)
+    //Deep{*source};               //Constr delegation with constr initialization
+{
     data = new int;
     *data = *source.data;
-    cout<<""<<endl;   
+    cout<<"Copy Constructor Deep Copy."<<endl;   
 }
 
 //Destructor
@@ -52,8 +56,8 @@ int main(){
     Deep obj1{100};     
     display_deep(obj1);
 
-    obj1.set_data(1000);
     Deep obj2{obj1};
+    obj2.set_data(1000);
 
     return 0;
 }
