@@ -2,7 +2,7 @@
 using namespace std;
 //WE NEED TO SORT THE ARRAY FIRST IN ORDER TO APPLY BINARY SEARCH(INCREASING ORDER)
 
-int arr_sorting(int arr[],int size){//for sorting array in increasing order
+void arr_sorting(int arr[],int size){//for sorting array in increasing order
 
 for(int i{0};i < size;i++){
     for(int j{i+1};j < size;j++){

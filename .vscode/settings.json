@@ -8,6 +8,7 @@
         "string": "cpp",
         "string_view": "cpp",
         "typeinfo": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "stdio.h": "c"
     }
 }
