@@ -10,13 +10,13 @@ how to avoid this:
 3) Declae int &a to &&a so it can store r-value {int &&a} but after doing this 
 we cannot pass a l-value as(a) into a fucntion, which is now updated to accept r-vale
 only*/
-void add(int &&a){
+void add(int &a){
     int b =10;
     cout<<a+b;
 }
 int main(){
     int a = 12;
-    add(a);    
+    add(4);    
 
     return 0;
 }

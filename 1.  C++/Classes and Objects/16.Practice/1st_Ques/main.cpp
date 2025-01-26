@@ -4,71 +4,139 @@ Implement both a shallow copy constructor and a deep copy constructor.
 Test the difference by creating a Person object and copying it using
 both methods.*/
 
-#include<iostream>
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
+// #include<iostream>
+// using std::string;
+// using std::cout;
+// using std::cin;
+// using std::endl;
 
-class Person{
-    private:
-    string* name{};
-    int age{};
+// class Person{
+//     private:
+//     string* name{};
+//     int age{};
 
-    public:
-    //Construtor
-    Person(const string& value,int age); // Passing val as a reference avoids creating a copy of the string. Without &, the parameter would be passed by value, which means the constructor would need to create a temporary copy of the string 
+//     public:
+//     //Construtor
+//     Person(const string& value,int age); // Passing val as a reference avoids creating a copy of the string. Without &, the parameter would be passed by value, which means the constructor would need to create a temporary copy of the string 
 
-    // Shallow Copy Constructor(Shallow copy)
-    // Person(const Person& copy_obj);
+//     // Shallow Copy Constructor(Shallow copy)
+//     // Person(const Person& copy_obj);
 
-    //Deep copy Constructor
-    Person(const Person& deep_obj);
+//     //Deep copy Constructor
+//     Person(const Person& deep_obj);
 
-    //Destructor
-    ~Person();
+//     //Destructor
+//     ~Person();
 
-    //Method
-    void print_info(); 
+//     //Method
+//     void print_info(); 
 
-};
+// };
 
-//Constructor
-Person::Person(const string& value,int age){ //Const to avoid any unnecessary changes and & to prevent a extra copy of string 
-    name = new string(value);                //remove (val) to use the below line
-    // *name = val;                          //Dereferences name to store val init
-    this->age = age;
-}
+// //Constructor
+// Person::Person(const string& value,int age){ //Const to avoid any unnecessary changes and & to prevent a extra copy of string 
+//     name = new string(value);                //remove "(value)" to use the below line
+//     // *name = value;                          //Dereferences name to store val init
+//     this->age = age;
+// }
 
-// Shallow Copy constructor
+// // Shallow Copy constructor
 // Person::Person(const Person& copy_obj)
 //     :name{copy_obj.name},age{copy_obj.age}
 // {
 //     cout<<"Copy Constructor made copy of: "<<*name<<"  "<<age<<endl;
 // }
 
+// //Deep Copy Constructor
+// // Person::Person(const Person& deep_obj){
+// //     name = new string(*deep_obj.name);
+// //     //*name = *deep_obj.name;
+// //     age = deep_obj.age;
+// // }
+
+// //Destructor
+// Person::~Person(){
+//     cout<<"Destructor called for "<<*name<< "  " <<age<<endl;
+//     delete name;
+// }
+// void Person::print_info(){
+//     cout<<"Name: "<<*name<< " Age: "<<age<<endl;
+// }
+// int main(){
+//     Person object{"Ramesh",40};
+//     object.print_info();
+
+//     Person object2 = object;
+//     object.print_info();
+
+//     return 0;
+// }
+
+
+#include<iostream>
+using std :: string;
+using std :: cout;
+using std :: cin;
+using std :: endl;
+
+class Person{
+    string *name;
+    int age;
+    
+    public:
+    //Constructor
+    Person(const string &value,int age);
+    
+    //Shallow Copy Constructor
+    // Person(const Person &copy_obj);
+    
+    //Deep Copy Constructor
+    Person(const Person &deep_copy);
+    
+    //Function to Print name
+    void display_info();
+    
+    //Destructor
+    ~Person();
+};
+
+//Constructor
+Person::Person(const string &value,int age){
+    name = new string(value);
+    this->age = age;
+    
+}
+//Shallow Copy Constructor
+// Person::Person(const Person &copy_obj)
+// :name{copy_obj.name},age{copy_obj.age}
+// {
+//     cout<<"Copy Constructor made copy of "<<*name<<endl;
+// }
+
 //Deep Copy Constructor
-Person::Person(const Person& deep_obj){
-    name = new string(*deep_obj.name);
-    //*name = *deep_obj.name;
-    age = deep_obj.age;
+Person::Person(const Person &deep_copy){
+    name = new string(*deep_copy.name);
+    this->age = deep_copy.age;
+    cout<<"Deep copy made of "<<*name<<endl;
 }
 
+//Display info
+void Person :: display_info(){
+    cout<<"Name: "<<*name<< " " <<"age = "<<age<<endl;
+}
 //Destructor
 Person::~Person(){
-    cout<<"Destructor called for "<<*name<< "  " <<age<<endl;
+    cout<<"Destructor called for "<<*name<< " " <<age<<endl;
     delete name;
 }
-void Person::print_info(){
-    cout<<"Name: "<<*name<< " Age: "<<age<<endl;
-}
+
 int main(){
-    Person object{"Ramesh",40};
-    object.print_info();
-
-    Person object2 = object;
-    object.print_info();
-
+    Person obj1{"Ram",40};
+    obj1.display_info();
+    
+    Person obj2{obj1};
+    obj2.display_info();
+    
     return 0;
 }
 
