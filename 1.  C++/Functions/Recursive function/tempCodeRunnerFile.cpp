@@ -1,1 +1,1 @@
-lastposition(array,n,0);
+  cout<<

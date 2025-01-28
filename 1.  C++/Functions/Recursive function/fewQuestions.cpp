@@ -1,11 +1,11 @@
 #include<iostream>
 using namespace std;
 
-// #define a1
-// #define a2
-// #define a3
-// #define a4
-#define a5
+#define a1
+//#define a2
+//#define a3
+//#define a4
+// #define a5
 //#define a6
 //#define a7
 //#define a8
@@ -20,6 +20,7 @@ int sum(int n){//Base Call
         return 0;
     }
     int prev_sum = sum(n - 1);//Recursive Call
+    cout<<prev_sum<<endl;
     return n + prev_sum; // you can remove prev_sum and replace prev_sum in return to sum(n-1)
 }
 int main(){
@@ -42,6 +43,7 @@ int power(int n,int p){//Base Call
         return 1;
     }
     int prev_power = power(n,p - 1);//Recusive Call
+    cout<<prev_power<<endl;//To check how values are recalled with value
     return n * prev_power;//Replace prev_power with power(n,p-1)
 
 }
@@ -65,6 +67,7 @@ int fact(int n){ // Base Call
         return 1;
     }
     int prev_num = fact(n-1);//Recursive Call
+    cout<<prev_num<<endl;
     return n * prev_num;//Replace prev_num with fact(n-1)
 
 }
@@ -86,6 +89,7 @@ int fibo(int n){
     if(n == 0 || n == 1){
         return n;
     }
+    
     return fibo(n-1) + fibo(n-2);
 
 
