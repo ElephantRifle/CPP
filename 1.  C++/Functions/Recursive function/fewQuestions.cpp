@@ -1,10 +1,10 @@
 #include<iostream>
 using namespace std;
 
-#define a1
+//#define a1
 //#define a2
 //#define a3
-//#define a4
+#define a4
 // #define a5
 //#define a6
 //#define a7
@@ -90,9 +90,9 @@ int fibo(int n){
         return n;
     }
     
-    return fibo(n-1) + fibo(n-2);
-
-
+    int result =  fibo(n-1) + fibo(n-2);
+    // cout<<result<<endl;
+    return result;
 }
 
 int main(){
