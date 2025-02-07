@@ -14,55 +14,69 @@ using std::cin;
 using std::endl;
 using std::vector;
 
-// Function Prototype
-// void ms(int arr[],int low,int high);//To Break Array using index
-// void merge(int arr[],int low,int mid,int high);//To Compare and Merge array
-
-void merge(vector<int>&arr,int low,int mid,int high){
-    vector<int>temp;
+//Merge two sorted half into single sorted subarray 
+void merge(vector<int>&arr,int low, int mid, int high){ 
+    vector<int> temp{};
     int left = low;
     int right = mid+1;
 
-    while (left <= mid && right <= high) {
-        if (arr[left] <= arr[right]) {
-            temp.push_back(arr[left]);
+    //Merge elements from both halves in sorted order
+    while(left <= mid && right <= high){
+        if(arr[left] <= arr[right]){
+            temp.push_back(arr[left]); // Take from left if it's smaller
             left++;
-        } else {
-            temp.push_back(arr[right]);
+        }else{
+            temp.push_back(arr[right]); // Take from right otherwise
             right++;
         }
     }
+    //Copy remaining elements from the left half (if any)
     while(left <= mid){
         temp.push_back(arr[left]);
         left++;
     }
+    //Copy remaining elements from the right half (if any)
     while(right <= high){
         temp.push_back(arr[right]);
         right++;
     }
+    //Copy merged elements back into the original array
     for(int i = low;i <= high;++i){
         arr[i] = temp[i - low];
+        cout<<arr[i];
     }
-}
-void merge_sort(vector<int>&arr,int low,int high){
-    if(low >= high){
-        return ;
-    }
-    int mid = low + (high - low)/2;
-    merge_sort(arr,low,mid);
-    merge_sort(arr,mid+1,high);
-    merge(arr,low,mid,high);
+    cout<<endl;
+
 }
 
+// Recursively divides and sorts the array
+void merge_sort(vector<int>&arr, int low, int high){
+    if(low >= high){
+        return;
+    }
+    int mid = low + (high - low)/2;//Find mid of an array
+
+    //Recursively divide left half of array
+    merge_sort(arr,low,mid);
+
+    //Recursively divide right half of the array
+    merge_sort(arr,mid+1,high);
+
+    //Merge the sorted array
+    merge(arr,low,mid,high);
+
+}
 
 int main(){
-    vector<int>arr{3,2,4,1,0,3,1,5,6,3};
-    int n =arr.size();
+    vector<int>arr{1,7,5,8,1};
+    int n = arr.size();
 
+    //Call merge_sort on the entire array (0 to n-1)
     merge_sort(arr,0,n-1);
-    for(int i = 0;i < n;++i){
-        cout<<arr[i]<<" ";
-    }
 
+    //Print the Sorted array
+    // for(int i = 0;i < n;++i){
+    //     cout<<arr[i]<<" ";
+    // }
     return 0;
 }
