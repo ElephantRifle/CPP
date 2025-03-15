@@ -37,7 +37,10 @@ int main(){
 }
 
 
-// Online C++ compiler to run C++ program online
+// This code will work but it dosen't implement the logic correctly 
+// In this we are swapping the number instead we have to shift the values to their correct position
+/* Why shifting ? bec when we require to put a value at its correct place in sorted array from unsorted
+*/ we have to perform SHIFTING NOT Swapping
 #include <iostream>
 using namespace std;
 int main() {
