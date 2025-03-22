@@ -11,7 +11,7 @@ Space Complexity: 𝑂(1)
 */
 
 #define code1   //Dosen't check if code is sorted or not
-#define code2   //checks if code is sorted or not
+//#define code2   //checks if code is sorted or not
 
 #ifdef code1
 
