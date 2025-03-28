@@ -37,16 +37,16 @@ int main(){
     // cout<<"Your Fullname is: "<<full_name<<endl;
 
     // // ---------------------------------------------------------------------------------------------------------------//
-    // cout<<"======================================"<<endl;
-    // cout<<"Enter your fullname: ";
-    // cin.getline(full_name,50);
-    // cout<<"Your Fullname is: "<<full_name<<endl;
+    cout<<"======================================"<<endl;
+    cout<<"Enter your fullname: ";
+    cin.getline(full_name,50);
+    cout<<"Your Fullname is: "<<full_name<<endl;
     
-    // strcpy(temp,full_name);
-    // if(strcmp(temp,full_name) == 0 )
-    //   cout<<temp<<" and "<<full_name<<" are the same. "<<endl;
-    // else
-    //   cout<<temp<<" and "<<full_name<<" are different. "<<endl;
+    strcpy(temp,full_name);
+    if(strcmp(temp,full_name) == 0 )
+      cout<<temp<<" and "<<full_name<<" are the same. "<<endl;
+    else
+      cout<<temp<<" and "<<full_name<<" are different. "<<endl;
 
 
     // cout<<"========================================"<<endl;
