@@ -25,7 +25,7 @@ int quick(vector<int>&arr,int low,int high){
     int i = low;
     int j = high;
     while(i < j){
-        while(arr[i] <= pivot && i <= high-1){
+        while(arr[i] <= pivot && i <= high-1){// -1 can be removed 
             i++;
         }
         while(arr[j] > pivot && j >= low+1){
@@ -61,7 +61,10 @@ int main() {
 
 #endif
 
-
+//THis code provide outputs like:
+//value of british being returned
+//the changes in arr
+//low and high value 
 #ifdef values
 
 #include <iostream>
