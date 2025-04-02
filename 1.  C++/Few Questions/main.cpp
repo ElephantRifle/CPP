@@ -213,7 +213,7 @@ for loop.*/
 // cout<<"Enter a number: ";
 // cin>>number;
 
-// for(;number != 0;number/=10){
+// for(number != 0;number/=10){
 //     digit = number % 10;
 //     sum += digit;
 // }
