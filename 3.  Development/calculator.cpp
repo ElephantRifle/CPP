@@ -11,47 +11,52 @@ using std::vector;
 
 int main(){
     string input{};
-    vector<int>arr{};
-    vector<int>values{};
+    vector<int>operands{};    //To store value in integer form 
+    vector<char>operators{};  //To store operators
     
     cout<<"->";
     getline(cin,input);
-
-
-    int length{0};
-    int i{0};
+ 
     int num{};
+    bool flag{false};
 
-    while(input[i] != '\0'){
-        if(input[i] >= '0' && input[i] <= '9'){
-            arr.push_back(i);
-            i++;
-            length++;
+    for(char c : input){
+        
+        if(c >= '0' && c <= '9'){
+            num =num * 10 +(c - '0');
+            flag = true;
         }else{
-            i++;
-            length++;
+            if(flag){
+                operands.push_back(num);
+                num = 0;
+                flag = false;
+            }
         }
     }
-   
-    for(auto temp : arr){
+    if(flag){
+        operands.push_back(num);
+    }
+
+    for(auto temp : operands){
         cout<<temp<<" ";
     }
-    cout<<'\n';
 
-    for(int i = 0;i < length;++i){
-        if(arr[i] == i){
-            num += input[i] - '0';
-            num *= 10;
-        }else if(arr[i] != i){
-            num /= 10;
-            if(num != 0){
-                values.push_back(num);
-            }
-            num = 0;
+    for(char c : input){
+
+        if(c == '+'){
+            operators.push_back(c);
+        }else if( c == '-'){
+            operators.push_back(c);
+        }else if(c == '*'){
+            operators.push_back(c);
+        }else if(c == '/'){
+            operators.push_back(c);
+        }else if(c == '%'){
+            operators.push_back(c);
         }
     }
-    for(auto temp : values){
-        cout<<temp<<" ,";
+    for(auto temp : operators){
+        cout<<temp<<" ";
     }
 
     return 0;
