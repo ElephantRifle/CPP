@@ -103,11 +103,11 @@ int main(){
                 lastNum = num;
             }else if(lastOpe == '-'){
                 result += lastNum;
-                lastNum = num;
+                lastNum = -num;
             }else if(lastOpe == '*'){
                 lastNum *= num;
             }else if(lastOpe == '/'){
-                lastNum *= num;
+                lastNum /= num;
             }else if(lastOpe == '%'){
                 lastNum %= num;
             }
