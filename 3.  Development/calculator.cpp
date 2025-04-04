@@ -73,9 +73,7 @@ int length(string input){
     int size = 0;
     int i = 0;
     while(input[i] != '\0'){
-        if(input[i] != ' ' && input[i] != '\0'){
-            size++;
-        }
+        size++;
         i++;
     }
     return size;
@@ -119,7 +117,7 @@ int main(){
     }
     result += lastNum;
 
-    cout<<lastNum;
+    cout<<result;
 
     return 0;
 }
