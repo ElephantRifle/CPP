@@ -8,7 +8,10 @@ using std::endl;
 using std::string;
 using std::vector;
 
+//#define to_extract
+#define correct_code
 
+#ifdef to_extract
 int main(){
     string input{};
     vector<int>operands{};    //To store value in integer form 
@@ -61,5 +64,69 @@ int main(){
 
     return 0;
 }
+
+#endif
+
+#ifdef correct_code
+
+int length(string input){
+    int size = 0;
+    int i = 0;
+    while(input[i] != '\0'){
+        if(input[i] != ' ' && input[i] != '\0'){
+            size++;
+        }
+        i++;
+    }
+    return size;
+}
+
+int main(){
+    string input{};
+
+    cout<<"Enter the values: ";
+    getline(cin,input);
     
+    int len = length(input);
+    int num{};
+    int lastNum{};
+    char lastOpe = '+';
+    int result{};
+
+    for(int i = 0;i <= len;++i){
+        char c = (i < len ? input[i] : '+');
+
+        if(c >='0' && c <= '9'){
+            num = num * 10 +(c - '0');
+
+        }else if(c == '+' || c == '-' || c == '/' || c == '*' || c == '%'){
+            if(lastOpe == '+'){
+                result += lastNum;
+                lastNum = num;
+            }else if(lastOpe == '-'){
+                result += lastNum;
+                lastNum = num;
+            }else if(lastOpe == '*'){
+                lastNum *= num;
+            }else if(lastOpe == '/'){
+                lastNum *= num;
+            }else if(lastOpe == '%'){
+                lastNum %= num;
+            }
+            lastOpe = c;
+            num = 0;
+        }
+    }
+    result += lastNum;
+
+    cout<<lastNum;
+
+    return 0;
+}
+
+
+
+
+#endif
+
    
