@@ -409,5 +409,38 @@ elements in an array using a for loop.*/
 //     return 0;
 // }
 
+//Q- WAP to count the number of 1's in numbers ranging from 0 to n?
+
+//THIS CODE PROVIDES THE ACTUAL BINARY OF NUMBER AND THE OCCURANCE IF 1's FROM(0,n)
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num{};
+    cout<<"Enter a number: ";
+    cin>>num;
+    
+    int posi = 1;
+    int result{};
+    int count{};
+    for(int i = 1; i <= num; ++i){
+        int temp = i;
+        while(temp != 0){
+            int remainder = temp % 2;
+            result += remainder * posi;
+            temp /= 2;
+            posi *= 10;
+            if(remainder == 1){
+                count ++;
+            }
+        }
+        posi = 1;
+        cout<<i<<"-> "<<result<<endl;
+        result = 0;
+    }
+    cout<<"Number if 1's "<<count;
+
+    return 0;
+}
 
 
