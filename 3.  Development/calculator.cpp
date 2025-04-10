@@ -9,7 +9,8 @@ using std::string;
 using std::vector;
 
 //#define to_extract
-#define correct_code
+//#define no_decimal_values
+#define can_handle_decimal_values
 
 #ifdef to_extract
 int main(){
@@ -67,7 +68,7 @@ int main(){
 
 #endif
 
-#ifdef correct_code
+#ifdef no_decimal_values
 
 int length(string input){
     int size = 0;
@@ -123,8 +124,77 @@ int main(){
 }
 
 
-
-
 #endif
 
+#ifdef can_handle_decimal_values
+
+
+double dec_modulo(double a ,double b){
+    int s1 = a / b;
+    double s2 = a - (s1 * b);
+
+    return s2;
+}
+
+int main(){
+   string input{};
+   cout<<"Enter a number: ";
+   getline(cin,input);
    
+   int len = input.length();
+
+   double num{};
+   double lastnum{};
+   double decimal_p{0.1};
+   char lastop{'+'};
+   bool is_decimal{false};
+   double result{};
+
+   for(int i = 0; i <= len;++i){
+    char c = i < len? input[i]:'+';
+
+    if(c >= '0' && c <= '9'){
+        if(!is_decimal){
+            num = num * 10 +(c - '0');
+        }else{
+            num += ( c - '0')*decimal_p;
+            decimal_p *= 0.1;
+        }
+
+    }else if(c == '.'){
+        is_decimal = true;
+
+    }else if(c == '+' || c == '-' || c == '*' || c == '/' || c == '%'){
+
+        if(lastop == '+'){
+            result += lastnum;
+            lastnum = num;
+
+        }else if(lastop == '-'){
+            result += lastnum;
+            lastnum = - num;
+
+        }else if(lastop == '*'){
+            lastnum *= num;
+
+        }else if(lastop == '/'){
+            lastnum /= num;
+
+        }else if(lastop == '%'){
+            lastnum = dec_modulo(lastnum,num);
+        }
+
+        lastop = c;
+        num = 0;
+        decimal_p = 0.1;
+        is_decimal = false;
+
+   }
+}
+    result += lastnum;
+    cout<<result;
+
+    return 0;
+}
+
+#endif
