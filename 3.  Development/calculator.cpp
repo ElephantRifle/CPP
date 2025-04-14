@@ -10,7 +10,8 @@ using std::vector;
 
 //#define to_extract
 //#define no_decimal_values
-#define can_handle_decimal_values
+//#define can_handle_decimal_values
+#define  parentheses_implement
 
 #ifdef to_extract
 int main(){
@@ -196,5 +197,81 @@ int main(){
 
     return 0;
 }
+
+#endif
+
+#ifdef parentheses_implement
+
+
+double mod_f_mul(int a , int b){
+    int s1 = a / b;
+    double s2 = (s1 * b) - a;
+
+    return s2;
+}
+
+
+int main(){
+    string input{};
+    cout<<"->";
+    getline(cin,input);
+
+    int size = input.length();
+
+
+    double num{};
+    double lastnum{};
+    double result{};
+    double decimal_point{0.1};
+
+    bool is_decimal{false};
+    char lastop{'+'};
+
+    for(int i = 0;i <= size;++i){
+        char c = i < size ? input[i] : '+';
+
+        if(c >= '0' && c <= '9'){
+            if(!is_decimal){
+                num = num * 10 +(c - '0');
+            }else if(is_decimal){
+                num += decimal_point *(c - '0');
+                decimal_point *= 0.1;
+            }
+
+        }else if(c == '.'){
+            is_decimal = true;
+        }
+
+        else if(c == '+' || c == '-'|| c == '*' || c == '/' || c == '%'){
+            if(lastop == '+'){
+                result += lastnum;
+                lastnum = num;
+            }else if(lastop == '-'){
+                result += lastnum;
+                lastnum = -num;
+            }else if(lastop == '*'){
+                lastnum *= num;
+            }else if(lastop == '/'){
+                lastnum /= num;
+            }else if(lastop == '%'){
+                lastnum = mod_f_mul(lastnum, num);
+            }
+            num = 0;
+            lastop = c;
+            decimal_point = 0.1;
+            is_decimal = false;
+        }
+    }
+    result += lastnum;
+    cout<<result<<endl;
+
+
+    return 0;
+}
+
+
+
+
+
 
 #endif
