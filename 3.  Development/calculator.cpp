@@ -200,8 +200,19 @@ int main(){
 
 #endif
 
-#ifdef parentheses_implement
+#ifdef squareroot_implement
 
+//Newton-Raphson method to find square root
+double mysqrt(double N) {
+    double x = N;
+    double epsilon = 1e-9;
+
+    while ((x * x - N) > epsilon || (x * x - N) < -epsilon) {
+        x = 0.5 * (x + N / x);
+    }
+
+    return x;
+}
 
 double mod_f_mul(int a , int b){
     int s1 = a / b;
@@ -226,9 +237,31 @@ int main(){
 
     bool is_decimal{false};
     char lastop{'+'};
+    bool square_root{false};
+    bool is_square{false};
 
     for(int i = 0;i <= size;++i){
         char c = i < size ? input[i] : '+';
+
+        // if(i < 2 && 
+        //     input[i] == 's'&&
+        //     input[i+1] == 'q'&&
+        //     input[i+2] == 'r')
+        //     {
+        //         is_square = true;
+        //         i += 2;
+        //         continue;
+        //     }
+        if(i < 3 && 
+            input[i] == 's' && 
+            input[i+1]== 'q'&&
+            input[i+2]=='r'&&
+            input[i+3]== 't')
+            {
+                square_root = true;
+                i += 3;
+                continue;
+            }
 
         if(c >= '0' && c <= '9'){
             if(!is_decimal){
@@ -243,7 +276,12 @@ int main(){
         }
 
         else if(c == '+' || c == '-'|| c == '*' || c == '/' || c == '%'){
-            if(lastop == '+'){
+            
+            if(square_root){
+                result += mysqrt(num);
+                square_root = false;
+            }
+            else if(lastop == '+'){
                 result += lastnum;
                 lastnum = num;
             }else if(lastop == '-'){
@@ -260,6 +298,9 @@ int main(){
             lastop = c;
             decimal_point = 0.1;
             is_decimal = false;
+
+        }else if(c == 's' || c == 'q' || c == 'r' || c == 't'){
+            square_root = true;
         }
     }
     result += lastnum;
@@ -268,8 +309,6 @@ int main(){
 
     return 0;
 }
-
-
 
 
 
