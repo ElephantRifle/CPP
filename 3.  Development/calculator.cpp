@@ -11,7 +11,7 @@ using std::vector;
 //#define to_extract
 //#define no_decimal_values
 //#define can_handle_decimal_values
-#define  parentheses_implement
+#define  squareroot_implement
 
 #ifdef to_extract
 int main(){
@@ -213,102 +213,125 @@ double mysqrt(double N) {
 
     return x;
 }
+//To find and return square
+double square(double num){
+    double squ = num * num;
+    return squ;
+}
 
+//To find and return mod of decimal values
 double mod_f_mul(int a , int b){
     int s1 = a / b;
     double s2 = (s1 * b) - a;
 
     return s2;
 }
-
+void few_rules(){
+    cout<<"\nDon't try to find loop holes or";
+    cout<<"\ni will make a new hole in You..";
+    cout<<"\n-----------------------------";
+    cout<<"\nTo use Square type 'squ'";
+    cout<<"\nTo use Square root type 'sqrt'";
+    cout<<"\nTo Exit type 'off' OR 'OFF'";
+    cout<<"\n-----------------------------";
+    cout<<endl;
+}
 
 int main(){
-    string input{};
-    cout<<"->";
-    getline(cin,input);
+    while(true){
+        few_rules();
+        string input{};
 
-    int size = input.length();
+        cout<<"\n->";
+        getline(cin,input);
 
-
-    double num{};
-    double lastnum{};
-    double result{};
-    double decimal_point{0.1};
-
-    bool is_decimal{false};
-    char lastop{'+'};
-    bool square_root{false};
-    bool is_square{false};
-
-    for(int i = 0;i <= size;++i){
-        char c = i < size ? input[i] : '+';
-
-        // if(i < 2 && 
-        //     input[i] == 's'&&
-        //     input[i+1] == 'q'&&
-        //     input[i+2] == 'r')
-        //     {
-        //         is_square = true;
-        //         i += 2;
-        //         continue;
-        //     }
-        if(i < 3 && 
-            input[i] == 's' && 
-            input[i+1]== 'q'&&
-            input[i+2]=='r'&&
-            input[i+3]== 't')
-            {
-                square_root = true;
-                i += 3;
-                continue;
-            }
-
-        if(c >= '0' && c <= '9'){
-            if(!is_decimal){
-                num = num * 10 +(c - '0');
-            }else if(is_decimal){
-                num += decimal_point *(c - '0');
-                decimal_point *= 0.1;
-            }
-
-        }else if(c == '.'){
-            is_decimal = true;
+        if(input == "off" || input == "OFF"){
+            cout << "Shutting down the calculator. Goodbye, Comrade.\n";
+            break;
         }
-
-        else if(c == '+' || c == '-'|| c == '*' || c == '/' || c == '%'){
-            
-            if(square_root){
-                result += mysqrt(num);
-                square_root = false;
+        int size = input.length();
+    
+        double num{};
+        double lastnum{};
+        double result{};
+        double decimal_point{0.1};
+    
+        bool is_decimal{false};
+        char lastop{'+'};
+    
+        bool square_root{false};
+        bool is_square{false};
+    
+        for(int i = 0;i <= size;++i){
+            char c = i < size ? input[i] : '+';
+    
+            if( input[i]   == 's'&&  //Checks for square as input
+                input[i+1] == 'q'&&
+                input[i+2] == 'u')
+                {
+                    is_square = true;
+                    i += 2;
+                    continue;
+                }
+            if( input[i]  == 's'&&  //Checks for square root as input
+                input[i+1]== 'q'&&
+                input[i+2]== 'r'&&
+                input[i+3]== 't')
+                {
+                    square_root = true;
+                    i += 3;
+                    continue;
+                }
+    
+                if(c >= '0' && c <= '9'){  
+                if(!is_decimal){ 
+                    num = num * 10 +(c - '0');   //Makes num if no decimal input
+                }else if(is_decimal){
+                    num += decimal_point *(c - '0');//Makes num with decimal values
+                    decimal_point *= 0.1;
+                }
+    
+            }else if(c == '.'){  //Checks for decimal point 
+                is_decimal = true;
             }
-            else if(lastop == '+'){
-                result += lastnum;
-                lastnum = num;
-            }else if(lastop == '-'){
-                result += lastnum;
-                lastnum = -num;
-            }else if(lastop == '*'){
-                lastnum *= num;
-            }else if(lastop == '/'){
-                lastnum /= num;
-            }else if(lastop == '%'){
-                lastnum = mod_f_mul(lastnum, num);
+    
+            else if(c == '+' || c == '-'|| c == '*' || c == '/' || c == '%'){
+                
+                if(square_root){   
+                    num = mysqrt(num);//Calls square root function
+                    square_root = false;
+                }
+                if(is_square){
+                    num = square(num);//Calls square function
+                    is_square = false;
+                }
+                if(lastop == '+'){
+                    result += lastnum;
+                    lastnum = num;
+                }else if(lastop == '-'){
+                    result += lastnum;
+                    lastnum = -num;
+                }else if(lastop == '*'){
+                    lastnum *= num;
+                }else if(lastop == '/'){
+                    lastnum /= num;
+                }else if(lastop == '%'){
+                    lastnum = mod_f_mul(lastnum, num);
+                }
+                num = 0;
+                lastop = c;
+                decimal_point = 0.1;
+                is_decimal = false;
+    
             }
-            num = 0;
-            lastop = c;
-            decimal_point = 0.1;
-            is_decimal = false;
-
-        }else if(c == 's' || c == 'q' || c == 'r' || c == 't'){
-            square_root = true;
         }
+        result += lastnum;
+        cout<<result<<endl;
+    
     }
-    result += lastnum;
-    cout<<result<<endl;
-
-
     return 0;
 }
+
 
 
 
