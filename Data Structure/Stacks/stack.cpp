@@ -44,9 +44,9 @@ int main(){
 
     cout<<"Stack Operations: \n";
     cout<<"1.Push\n";
-    cout<<"1.Pop\n";
-    cout<<"1.Display Stack\n";
-    cout<<"1.Exit\n";
+    cout<<"2.Pop\n";
+    cout<<"3.Display Stack\n";
+    cout<<"4.Exit\n";
 
     
     while(choice != 4){
