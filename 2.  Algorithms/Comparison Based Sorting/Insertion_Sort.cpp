@@ -19,7 +19,7 @@ Space Complexity: 𝑂(1)
 // This code will work but it dosen't implement the logic correctly .
 // In this we are swapping the number instead we have to shift the values to their correct position
 /* Why shifting ? bec when we require to put a value at its correct place in sorted array from unsorted
-*/ we have to perform SHIFTING NOT Swapping its more efficient.
+we have to perform SHIFTING NOT Swapping its more efficient.*/
 
 // Issue: i-- inside the loop changes the for loop’s control, which can cause skipped elements or extra iterations.
 // Risk: Might work in some cases, but not always reliable.

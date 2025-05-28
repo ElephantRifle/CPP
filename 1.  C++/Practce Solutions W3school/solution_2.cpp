@@ -625,12 +625,69 @@ between 0 and 1,000,000. The output (real numbers) may include an error of 0.01 
 // }
 
 /* Q - 75. Write a C++ program to compute the sum of the specified number of prime numbers.*/
-int main(){
-    vector<int>prime{};
-    int count{1};
-    int n{};
+// int main(){
+//     vector<int>prime{};
+//     int count{1};
+//     int n{};
     
 
+//     return 0;
+// }
+
+/*Q - WAP to Shift elements of arr till its size*/
+
+//1st
+//Not Good Approach
+
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     int arr[]{5, 4, 3, 2, 1};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+
+//     // Perform left rotation 'size' times (this will reverse the array)
+//     for (int i = 0; i < size; ++i) {
+//         // Store the first element to move it to the end after shifting
+//         int first = arr[0];
+
+//         // Shift all elements to the left by one position
+//         for (int j = 1; j < size; ++j) {
+//             arr[j - 1] = arr[j];
+//         }
+//         // Place the stored first element at the last index
+//         arr[size - 1] = first;
+//     }
+//     for (auto temp : arr) {
+//         cout << temp << " ";
+//     }
+
+//     return 0;
+// }
+
+//2nd
+//Improved Resuability 
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[]{5,4,3,2,1};
+    int size = sizeof(arr)/sizeof(arr[0]);
+
+    int times = 3;//Change it or take user input
+    while(times--){
+        int first = arr[0];
+        for (int i = 1; i < size; ++i) {
+            arr[i - 1] = arr[i];
+        }
+        arr[size - 1] = first;
+    }
+
+    for(auto temp:arr){
+        cout<<temp<<" ";
+}
     return 0;
 }
+
+
 
