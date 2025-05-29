@@ -10,24 +10,51 @@ Time Complexity:
 Space Complexity: 𝑂(1)  
 */
 
+// #include<iostream>
+// using std::cout;
+// using std::cin;
+// using std::endl;
+
+// int main(){
+//     int arr[]{12,45,23,51,19,8,2,1};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+    
+//     for(int i = 0;i < size -1;++i){
+//         for(int j = i + 1;j < size ;++j){
+//             if(arr[i] > arr[j]){
+//                 int temp = arr[i];
+//                 arr[i] = arr[j];
+//                 arr[j] = temp;
+//             }
+//             }
+//         }
+//     for(auto temp : arr){
+//         cout<<temp<<" ";
+//     }
+
+//     return 0;
+// }
+
 #include<iostream>
-using std::cout;
-using std::cin;
-using std::endl;
+using std :: cout;
+using std :: cin;
 
 int main(){
-    int arr[]{12,45,23,51,19,8,2,1};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    for(int i = 0;i < size -1;++i){
-        for(int j = i + 1;j < size ;++j){
-            if(arr[i] > arr[j]){
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
+    int arr[]{5,4,3,2,1};
+    int size = sizeof(arr)/sizeof(arr[0]);
+
+    for(int i = 0;i < size - 1;++i){
+        int min = i;
+
+        for(int j = i+1;j < size;++j){
+            if(arr[j] < arr[min]){
+                min = j;
             }
         }
+        int temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+    }
     for(auto temp : arr){
         cout<<temp<<" ";
     }
