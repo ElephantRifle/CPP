@@ -2,7 +2,10 @@
 #include<string>
 #include<vector>
 #include<cctype>
+#include<algorithm>
 using namespace std;
+
+
 /*Q-Write a program to print the multiplication 
 table of a given number using a while loop.*/
 // int main(){
@@ -467,23 +470,188 @@ elements in an array using a for loop.*/
 
 //Q - Remove Duplicates from Sorted Array
 
-int main(){
-    int arr[]{1,1,2,3,4,4,5,6,7,7,7,8};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int k{1};
+// int main(){
+//     int arr[]{1,1,2,3,4,4,5,6,7,7,7,8};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int k{1};
 
-    for(int i = 1;i < size;++i){
-        int prev = i - 1;
-        int curr = arr[i];
-        if(arr[prev] != curr){
-            arr[k] = arr[i];
-            k++;
+//     for(int i = 1;i < size;++i){
+//         int prev = i - 1;
+//         int curr = arr[i];
+//         if(arr[prev] != curr){
+//             arr[k] = arr[i];
+//             k++;
+//         }
+//     }
+//     for(int i = 0;i < k;++i){
+//         cout<<arr[i]<<" ";
+//     }
+//     cout<<"\n"<<k;
+
+//     return 0;
+// }
+
+
+/*Q - Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.*/
+
+// int main(){
+//     int arr[]{1,3,5,6};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int target{5};
+//     int a{};
+
+//     for(int i = 0;i < size;++i){
+//         if(target > arr[i]){
+//             a++;
+//         }else{
+//             break;
+//         }
+//     }
+//     cout<<a;
+    
+//     return 0;
+// }
+
+
+/*Q - Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.(TWO SUM)*/
+
+//TO FIND ALL THE AVAILABLE PAIR
+// int main(){
+//     int arr[]{1,5,3,7};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int target{8};
+//     int sum{};
+
+//     for(int i = 0;i < size;++i){
+//         for(int j = i+1;j < size;++j){
+            
+//             if(arr[i] + arr[j] == target){
+//                 cout<<"["<<i<<","<<j<<"]";
+//             }else{
+//                 sum -= arr[j] ;
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+//TO FIND ONLY ONE
+
+// int main(){
+//     int arr[]{1,5,3,7};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int target{8};
+ 
+
+//     for(int i = 0;i < size;++i){
+//         for(int j = i+1;j < size;++j){
+//             if(arr[i] + arr[j] == target){
+//                 cout<<"["<<i<<","<<j<<"]";
+//                 return 0;
+//             }
+//         }
+//     }
+//     return 0;
+// }
+
+
+/*Q - Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+      ---------------------THREE SUM------------------------- 
+*/
+//COMPLEXITY - O(n^3) not good and provides dublicated values
+// int main(){
+//     int arr[]{-1,0,1,2,-1,-4};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int target{0};
+
+//     for(int i = 0;i < size;++i){
+//         for(int j = i + 1;j < size;++j){
+//             for(int k = j + 1;k < size;++k){
+//                 if(arr[i] + arr[j] + arr[k] == target){
+//                     cout<<i<<","<<j<<","<<k<<",";
+//                 }
+//             }
+//             cout<<"\n";
+//         }
+//     }
+
+//     return 0;
+// }
+
+int main(){
+    int arr[]{-1,0,1,2,-1,-4};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    vector<vector<int>>arr_2{}; // without vector<vector>int>>arr_2 we cannot pass so many value at one time (Line 599)
+
+    sort(arr,arr+size);
+
+    for(int i = 0;i < size;++i){
+        if(i > 0 && arr[i] == arr[i-1])continue;
+        int left = i + 1;
+        int right = size - 1;
+
+        while(left < right){
+             int sum = arr[i] + arr[left] + arr[right] ;
+             if(sum == 0){
+                arr_2.push_back({arr[i],arr[left],arr[right]});
+                left++;
+                right--;
+                while(left < right && arr[left] == arr[left - 1]){
+                    left++;
+                }
+                while(left < right && arr[right] == arr[right + 1]){
+                    right--;
+                }
+             }else if(sum < 0){
+                left++;
+             }else{
+                right--;
+             }
         }
     }
-    for(int i = 0;i < k;++i){
-        cout<<arr[i]<<" ";
-    }
-    cout<<"\n"<<k;
+     for (auto triplet : arr_2) {
+        cout<<"[";
+        for(auto tri : triplet)cout<<tri<<" ";
+        cout<<"]\n";
+        
+     }
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
