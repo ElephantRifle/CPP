@@ -581,46 +581,101 @@ Notice that the solution set must not contain duplicate triplets.
 //     return 0;
 // }
 
+// int main(){
+//     int arr[]{-1,0,1,2,-1,-4};
+//     int size = sizeof(arr)/sizeof(arr[0]);
+//     vector<vector<int>>arr_2{}; // without vector<vector>int>>arr_2 we cannot pass so many value at one time (Line 599)
+
+//     sort(arr,arr+size);
+
+//     for(int i = 0;i < size;++i){
+//         if(i > 0 && arr[i] == arr[i-1])continue;
+//         int left = i + 1;
+//         int right = size - 1;
+
+//         while(left < right){
+//              int sum = arr[i] + arr[left] + arr[right] ;
+//              if(sum == 0){
+//                 arr_2.push_back({arr[i],arr[left],arr[right]});
+//                 left++;
+//                 right--;
+//                 while(left < right && arr[left] == arr[left - 1]){
+//                     left++;
+//                 }
+//                 while(left < right && arr[right] == arr[right + 1]){
+//                     right--;
+//                 }
+//              }else if(sum < 0){
+//                 left++;
+//              }else{
+//                 right--;
+//              }
+//         }
+//     }
+//      for (auto &triplet : arr_2) {//& Makes it faster (NO EXTRA COPY)
+//         cout<<"[";
+//         for(auto &tri : triplet)cout<<tri<<" ";
+//         cout<<"]\n";
+        
+//      }
+
+//     return 0;
+// }
+
+
+
+
+
+//Q - 4SUM Problem
+
 int main(){
-    int arr[]{-1,0,1,2,-1,-4};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    vector<vector<int>>arr_2{}; // without vector<vector>int>>arr_2 we cannot pass so many value at one time (Line 599)
-
+    int arr[]{-2,-1,-1,1,1,2,2};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    vector<vector<int>>result{};
     sort(arr,arr+size);
-
+    
     for(int i = 0;i < size;++i){
         if(i > 0 && arr[i] == arr[i-1])continue;
-        int left = i + 1;
-        int right = size - 1;
-
-        while(left < right){
-             int sum = arr[i] + arr[left] + arr[right] ;
-             if(sum == 0){
-                arr_2.push_back({arr[i],arr[left],arr[right]});
-                left++;
-                right--;
-                while(left < right && arr[left] == arr[left - 1]){
+        for(int j = i+1;j < size;++j){
+            if(j > i+1 && arr[j] == arr[j-1])continue;
+            
+            int left = j + 1;
+            int right = size - 1;
+            
+            while(left < right){
+                int sum = arr[i] + arr[j] + arr[left] + arr[right];
+                
+                if(sum == 0){
+                    result.push_back({arr[i],arr[j],arr[left],arr[right]});
                     left++;
-                }
-                while(left < right && arr[right] == arr[right + 1]){
                     right--;
+                    while(left < right && arr[left] == arr[left - 1]){
+                        left ++;
+                    }
+                    while(left < right && arr[right] == arr[right +1]){
+                        right--;
+                    }
+                }else if(sum < 0){
+                    left ++;
+                }else{
+                    right --;
                 }
-             }else if(sum < 0){
-                left++;
-             }else{
-                right--;
-             }
+            }
         }
     }
-     for (auto triplet : arr_2) {
+    for(auto &temp : result){
         cout<<"[";
-        for(auto tri : triplet)cout<<tri<<" ";
-        cout<<"]\n";
-        
-     }
-
+        for(auto & tem : temp){
+            cout<<tem<<" ";
+        }
+        cout<<"]";
+        cout<<endl;
+    }
+    
     return 0;
 }
+
 
 
 
