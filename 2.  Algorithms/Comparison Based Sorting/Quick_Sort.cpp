@@ -12,7 +12,9 @@ Space Complexity: 𝑂(log𝑛)  (average case for recursion)
 //This is the code to put a pivot at its correct place
 
 //#define code1
-#define values 
+//#define values 
+#define with_FOR_LOOP
+
 
 #ifdef code1
 
@@ -48,6 +50,8 @@ void quick_sort(vector<int>&arr,int low,int high){
 }
 int main() {
     vector<int>arr{4,6,2,5,7,9,1,3,4};
+
+    
     int size = arr.size();
     
     quick_sort(arr,0,size-1);
@@ -112,6 +116,72 @@ int main() {
     // for(auto temp : arr){
     //     cout<<temp<<" ";
     // }
+
+    return 0;
+}
+
+#endif
+
+#ifdef with_FOR_LOOP
+
+#include <iostream>
+#include<vector>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::vector;
+
+int quick(vector<int>& arr, int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
+
+    // outer loop (acts like while(i < j))
+    for (; i < j; ) {
+
+        // Move  i forward
+        for (; i <= high && arr[i] <= pivot; ++i);
+
+        //move j backward
+        for (; j >= low && arr[j] > pivot; --j);
+
+        if (i < j) {
+            swap(arr[i], arr[j]);
+        }
+    }
+
+    swap(arr[low], arr[j]);
+    return j;
+}
+
+void quick_sort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivotIndex = quick(arr, low, high);
+        quick_sort(arr, low, pivotIndex - 1);
+        quick_sort(arr, pivotIndex + 1, high);
+    }
+}
+
+int main() {
+    int input{};
+    cout << "Enter number of elements: ";
+    cin >> input;
+
+    vector<int> arr(input);
+
+    cout << "Enter " << input << " elements:\n";
+    for (int i = 0; i < input; ++i) {
+        cout << ">> ";
+        cin >> arr[i];
+    }
+
+    quick_sort(arr, 0, input - 1);
+
+    cout << "Sorted array: ";
+    for (auto temp : arr) {
+        cout << temp << " ";
+    }
+    cout << endl;
 
     return 0;
 }

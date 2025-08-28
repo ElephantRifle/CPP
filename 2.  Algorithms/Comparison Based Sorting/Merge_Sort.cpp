@@ -163,7 +163,10 @@ int main(){
 
 #include <iostream>
 #include <vector>
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::vector;
 
 void merge(vector<int>& arr, int low, int mid, int high) {
     vector<int> temp;
