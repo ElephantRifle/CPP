@@ -9,7 +9,8 @@ How it works: Divides the array into two halves, sorts them recursively, and the
 */
 
 //#define code1
-#define without_comments
+//#define without_comments
+#define with_FOR_LOOP
 
 
 #ifdef code1
@@ -152,6 +153,87 @@ int main(){
 
     return 0;
 }
+
+
+
+#endif
+
+
+#ifdef with_FOR_LOOP
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int>& arr, int low, int mid, int high) {
+    vector<int> temp;
+    int left = low;
+    int right = mid + 1;
+
+
+    for (; left <= mid && right <= high; ) {
+        if (arr[left] <= arr[right]) {
+            temp.push_back(arr[left]);
+            left++;
+        } else {
+            temp.push_back(arr[right]);
+            right++;
+        }
+    }
+
+    // copy remaining left part
+    for (; left <= mid; left++) {
+        temp.push_back(arr[left]);
+    }
+
+    // copy remaining right part
+    for (; right <= high; right++) {
+        temp.push_back(arr[right]);
+    }
+
+    // copy back to original array
+    for (int i = low; i <= high; ++i) {
+        arr[i] = temp[i - low];
+    }
+}
+
+void merge_sort(vector<int>& arr, int low, int high) {
+    if (low >= high) {
+        return;
+    } else {
+        int mid = low + (high - low) / 2;
+        merge_sort(arr, low, mid);
+        merge_sort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter " << n << " elements: \n";
+    for (int i = 0; i < n; i++) {
+        cout<<">>";
+        cin >> arr[i];
+    }
+
+    merge_sort(arr, 0, n - 1);
+
+    cout << "Sorted array: ";
+    for (auto temp : arr) {
+        cout << temp << " ";
+    }
+    cout << endl;
+
+    
+    return 0;
+}
+
+
+
 
 
 
