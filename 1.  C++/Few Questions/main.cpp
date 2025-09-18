@@ -628,54 +628,81 @@ Notice that the solution set must not contain duplicate triplets.
 
 //Q - 4SUM Problem
 
-int main(){
-    int arr[]{-2,-1,-1,1,1,2,2};
-    int size = sizeof(arr) / sizeof(arr[0]);
+// int main(){
+//     int arr[]{-2,-1,-1,1,1,2,2};
+//     int size = sizeof(arr) / sizeof(arr[0]);
     
-    vector<vector<int>>result{};
-    sort(arr,arr+size);
+//     vector<vector<int>>result{};
+//     sort(arr,arr+size);
     
-    for(int i = 0;i < size;++i){
-        if(i > 0 && arr[i] == arr[i-1])continue;
-        for(int j = i+1;j < size;++j){
-            if(j > i+1 && arr[j] == arr[j-1])continue;
+//     for(int i = 0;i < size;++i){
+//         if(i > 0 && arr[i] == arr[i-1])continue;
+//         for(int j = i+1;j < size;++j){
+//             if(j > i+1 && arr[j] == arr[j-1])continue;
             
-            int left = j + 1;
-            int right = size - 1;
+//             int left = j + 1;
+//             int right = size - 1;
             
-            while(left < right){
-                int sum = arr[i] + arr[j] + arr[left] + arr[right];
+//             while(left < right){
+//                 int sum = arr[i] + arr[j] + arr[left] + arr[right];
                 
-                if(sum == 0){
-                    result.push_back({arr[i],arr[j],arr[left],arr[right]});
-                    left++;
-                    right--;
-                    while(left < right && arr[left] == arr[left - 1]){
-                        left ++;
-                    }
-                    while(left < right && arr[right] == arr[right +1]){
-                        right--;
-                    }
-                }else if(sum < 0){
-                    left ++;
-                }else{
-                    right --;
-                }
-            }
-        }
-    }
-    for(auto &temp : result){
-        cout<<"[";
-        for(auto & tem : temp){
-            cout<<tem<<" ";
-        }
-        cout<<"]";
-        cout<<endl;
-    }
+//                 if(sum == 0){
+//                     result.push_back({arr[i],arr[j],arr[left],arr[right]});
+//                     left++;
+//                     right--;
+//                     while(left < right && arr[left] == arr[left - 1]){
+//                         left ++;
+//                     }
+//                     while(left < right && arr[right] == arr[right +1]){
+//                         right--;
+//                     }
+//                 }else if(sum < 0){
+//                     left ++;
+//                 }else{
+//                     right --;
+//                 }
+//             }
+//         }
+//     }
+//     for(auto &temp : result){
+//         cout<<"[";
+//         for(auto & tem : temp){
+//             cout<<tem<<" ";
+//         }
+//         cout<<"]";
+//         cout<<endl;
+//     }
     
+//     return 0;
+// }
+
+
+//Q - Given a vector of integers, increment the last element only, and if it becomes multi-digit, split it into separate digits in the vector
+
+int main() {
+    vector<int>arr{9,9};
+    int size = arr.size();
+    int a = arr[size - 1] ;
+    a += 1;
+    arr.pop_back();
+    
+    int div = 1;
+    while(a / div >= 10){
+        div *= 10;
+    }
+    while(div > 0){
+        int left = a / div;
+        arr.push_back(left);
+        a %= div;
+        div /= 10;
+        
+    }
+    for(auto temp : arr){
+        cout<<temp<<" ";
+    }
+
     return 0;
 }
-
 
 
 
