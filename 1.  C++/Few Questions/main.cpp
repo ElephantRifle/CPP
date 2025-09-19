@@ -679,27 +679,62 @@ Notice that the solution set must not contain duplicate triplets.
 
 //Q - Given a vector of integers, increment the last element only, and if it becomes multi-digit, split it into separate digits in the vector
 
-int main() {
-    vector<int>arr{9,9};
-    int size = arr.size();
-    int a = arr[size - 1] ;
-    a += 1;
-    arr.pop_back();
+// int main() {
+//     vector<int>arr{9,9};
+//     int size = arr.size();
+//     int a = arr[size - 1] ;
+//     a += 1;
+//     arr.pop_back();
     
-    int div = 1;
-    while(a / div >= 10){
-        div *= 10;
-    }
-    while(div > 0){
-        int left = a / div;
-        arr.push_back(left);
-        a %= div;
-        div /= 10;
+//     int div = 1;
+//     while(a / div >= 10){
+//         div *= 10;
+//     }
+//     while(div > 0){
+//         int left = a / div;
+//         arr.push_back(left);
+//         a %= div;
+//         div /= 10;
         
+//     }
+//     for(auto temp : arr){
+//         cout<<temp<<" ";
+//     }
+
+//     return 0;
+// }
+
+
+//Q - Plus One
+
+int main() {
+    vector<int>arr{9,9,9,9};
+    int size = arr.size();
+    
+    int carry{1};
+    
+    for(int i = size -1;i >= 0;--i){
+        int sum = arr[i] + carry;
+        arr[i] = sum % 10;
+        if(sum > 9){
+            carry = 1;
+        }else{
+            carry = 0;
+        }
     }
+    if(carry > 0){
+        //arr.resize(size + carry); OR
+        arr.push_back(0);
+        for(int i = size;i > 0;i--){ //Stop at i = 1
+            arr[i] = arr[i-1];
+        }
+        arr[0] = carry;
+    }
+    
     for(auto temp : arr){
         cout<<temp<<" ";
     }
+    
 
     return 0;
 }
