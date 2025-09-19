@@ -707,34 +707,77 @@ Notice that the solution set must not contain duplicate triplets.
 
 //Q - Plus One
 
-int main() {
-    vector<int>arr{9,9,9,9};
-    int size = arr.size();
+// int main() {
+//     vector<int>arr{9,9,9,9};
+//     int size = arr.size();
     
-    int carry{1};
+//     int carry{1};
     
-    for(int i = size -1;i >= 0;--i){
-        int sum = arr[i] + carry;
-        arr[i] = sum % 10;
-        if(sum > 9){
-            carry = 1;
+//     for(int i = size -1;i >= 0;--i){
+//         int sum = arr[i] + carry;
+//         arr[i] = sum % 10;
+//         if(sum > 9){
+//             carry = 1;
+//         }else{
+//             carry = 0;
+//         }
+//     }
+//     if(carry > 0){
+//         //arr.resize(size + carry); OR
+//         arr.push_back(0);
+//         for(int i = size;i > 0;i--){ //Stop at i = 1
+//             arr[i] = arr[i-1];
+//         }
+//         arr[0] = carry;
+//     }
+    
+//     for(auto temp : arr){
+//         cout<<temp<<" ";
+//     }
+    
+
+//     return 0;
+// }
+
+//Q - Merge Sorted Array
+int main(){
+    //We need to add zeros = m so that we can rewrite num_1 with combined  elements
+    vector<int>num_1{1,2,3,5,6,7,0,0,0};
+    vector<int>num_2{2,5,6};
+    vector<int>result{};
+
+    int n{6};
+    int m{3};
+    int left{0},right{0};
+    
+    // Merge until one list is exhausted
+    while(left < n   && right < m  ){
+        if(num_1[left] <= num_2[right]){
+            result.push_back(num_1[left]);
+            left++;
         }else{
-            carry = 0;
+            result.push_back(num_2[right]);
+            right++;
         }
     }
-    if(carry > 0){
-        //arr.resize(size + carry); OR
-        arr.push_back(0);
-        for(int i = size;i > 0;i--){ //Stop at i = 1
-            arr[i] = arr[i-1];
-        }
-        arr[0] = carry;
+    //Copy remaining elements from num_1
+    while(left < n ){
+        result.push_back(num_1[left]);
+        left++;
     }
-    
-    for(auto temp : arr){
+    //Copy remaining elements from num_2
+    while(right < m ){
+        result.push_back(num_2[right]);
+        right++;
+    }
+
+   for(int i = 0;i < m+n;++i){
+        num_1[i] = result[i];
+   }
+   for(auto temp :num_1){
         cout<<temp<<" ";
-    }
-    
+   }
+
 
     return 0;
 }
