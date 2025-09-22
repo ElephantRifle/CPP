@@ -740,50 +740,170 @@ Notice that the solution set must not contain duplicate triplets.
 // }
 
 //Q - Merge Sorted Array
-int main(){
-    //We need to add zeros = m so that we can rewrite num_1 with combined  elements
-    vector<int>num_1{1,2,3,5,6,7,0,0,0};
-    vector<int>num_2{2,5,6};
-    vector<int>result{};
+// int main(){
+//     //We need to add zeros = m so that we can rewrite num_1 with combined  elements
+//     vector<int>num_1{1,2,3,5,6,7,0,0,0};
+//     vector<int>num_2{2,5,6};
+//     vector<int>result{};
 
-    int n{6};
-    int m{3};
-    int left{0},right{0};
+//     int n{6};
+//     int m{3};
+//     int left{0},right{0};
     
-    // Merge until one list is exhausted
-    while(left < n   && right < m  ){
-        if(num_1[left] <= num_2[right]){
-            result.push_back(num_1[left]);
-            left++;
-        }else{
-            result.push_back(num_2[right]);
-            right++;
+//     // Merge until one list is exhausted
+//     while(left < n   && right < m  ){
+//         if(num_1[left] <= num_2[right]){
+//             result.push_back(num_1[left]);
+//             left++;
+//         }else{
+//             result.push_back(num_2[right]);
+//             right++;
+//         }
+//     }
+//     //Copy remaining elements from num_1
+//     while(left < n ){
+//         result.push_back(num_1[left]);
+//         left++;
+//     }
+//     //Copy remaining elements from num_2
+//     while(right < m ){
+//         result.push_back(num_2[right]);
+//         right++;
+//     }
+
+//    for(int i = 0;i < m+n;++i){
+//         num_1[i] = result[i];
+//    }
+//    for(auto temp :num_1){
+//         cout<<temp<<" ";
+//    }
+
+
+//     return 0;
+// }
+
+
+
+//Q - Pascal Traingle in this Form
+// [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1],[1,5,10,10,5,1]]
+
+// int main() {
+//     int n{};
+//     cout << "Enter a num: ";
+//     cin >> n;
+
+//     cout << "[";
+//     for (int i = 0; i < n; ++i) {
+//         int coefficient = 1;
+//         cout << "[";
+//         for (int j = 0; j <= i; ++j) {
+//             cout << coefficient;
+//             if (j < i) cout << ","; // add comma between numbers
+//             coefficient = coefficient * (i - j) / (j + 1);
+//         }
+//         cout << "]";
+//         if (i < n - 1) cout << ","; // add comma between rows
+//     }
+//     cout << "]";
+
+//     return 0;
+// }
+
+
+//Q - 2D Vector pushing and printing only Rows No Col Input or Output
+
+// int main(){
+//     int n{};
+//     cout<<"Enter a number: ";
+//     cin>>n;
+
+//     vector<vector<int>>pascal(n);
+
+//     for(int i = 0;i < n;++i){
+//         int a{};
+//         cout<<"Elements in a Row: ";
+//         cin>>a;
+
+//         cout<<"Enter "<<a<<" elements: ";
+//         for(int j = 0;j < a;++j){
+//             int x{};
+//             cin>>x;
+
+//             pascal[i].push_back(x);
+//         }
+//     }
+//     for(int i = 0;i < n;++i){
+//         for(auto temp : pascal[i]){
+//             cout<<temp<<" ";
+//         }
+//         cout<<"\n";
+//     }
+
+//     return 0;
+// }
+
+//Q - Pascal Triangle Using 2D vector 
+
+// int main(){
+//     int n{};
+//     cout<<"Rows: ";
+//     cin>>n;
+
+//     vector<vector<int>>pascal(n);
+
+//     for(int i = 0;i < n;++i){
+//         pascal[i].resize(i+1);
+//         pascal[i][0] = 1;
+//         pascal[i][i] = 1;
+
+//         for(int j = 1;j < i;++j){
+//             pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j];
+//         }
+//     }
+//     for(int i = 0;i < n;++i){
+//         for(auto temp : pascal[i]){
+//             cout<<"["<<temp<<"]";
+//         }
+//         cout<<"\n";
+//     }
+
+
+//     return 0;
+// }
+
+
+//Pascal Triangle without Resize function of Vector
+int main(){
+    int n{};
+    cout<<"Enter value: ";
+    cin>>n;
+
+    vector<vector<int>>pascal;
+
+    for(int i = 0;i < n;++i){
+        vector<int>row;
+        row.push_back(1);
+
+        for(int j = 1;j < i;++j){
+            row.push_back(pascal[i-1][j-1] + pascal[i-1][j]);
         }
-    }
-    //Copy remaining elements from num_1
-    while(left < n ){
-        result.push_back(num_1[left]);
-        left++;
-    }
-    //Copy remaining elements from num_2
-    while(right < m ){
-        result.push_back(num_2[right]);
-        right++;
+        if(i > 0){
+            row.push_back(1);
+        }
+        pascal.push_back(row);
     }
 
-   for(int i = 0;i < m+n;++i){
-        num_1[i] = result[i];
-   }
-   for(auto temp :num_1){
-        cout<<temp<<" ";
-   }
-
-
+     for (int i = 0; i < n; ++i) {
+        cout << "[";
+        for (int j = 0; j < pascal[i].size(); ++j) {
+            cout << pascal[i][j];
+            if (j < pascal[i].size() - 1) cout << ", ";
+        }
+        cout << "]\n";
+    }
+ 
     return 0;
 }
-
-
-
 
 
 
