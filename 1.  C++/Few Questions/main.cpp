@@ -782,7 +782,7 @@ Notice that the solution set must not contain duplicate triplets.
 //     return 0;
 // }
 
-
+//======================================================================
 
 //Q - Pascal Traingle in this Form
 // [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1],[1,5,10,10,5,1]]
@@ -873,41 +873,129 @@ Notice that the solution set must not contain duplicate triplets.
 
 
 //Pascal Triangle without Resize function of Vector
-int main(){
-    int n{};
-    cout<<"Enter value: ";
-    cin>>n;
+// int main(){
+//     int n{};
+//     cout<<"Enter value: ";
+//     cin>>n;
 
-    vector<vector<int>>pascal;
+//     vector<vector<int>>pascal;
 
-    for(int i = 0;i < n;++i){
-        vector<int>row;
-        row.push_back(1);
+//     for(int i = 0;i < n;++i){
+//         vector<int>row;
+//         row.push_back(1);
 
-        for(int j = 1;j < i;++j){
-            row.push_back(pascal[i-1][j-1] + pascal[i-1][j]);
-        }
-        if(i > 0){
-            row.push_back(1);
-        }
-        pascal.push_back(row);
-    }
+//         for(int j = 1;j < i;++j){
+//             row.push_back(pascal[i-1][j-1] + pascal[i-1][j]);
+//         }
+//         if(i > 0){
+//             row.push_back(1);
+//         }
+//         pascal.push_back(row);
+//     }
 
-     for (int i = 0; i < n; ++i) {
-        cout << "[";
-        for (int j = 0; j < pascal[i].size(); ++j) {
-            cout << pascal[i][j];
-            if (j < pascal[i].size() - 1) cout << ", ";
-        }
-        cout << "]\n";
-    }
+//      for (int i = 0; i < n; ++i) {
+//         cout << "[";
+//         for (int j = 0; j < pascal[i].size(); ++j) {
+//             cout << pascal[i][j];
+//             if (j < pascal[i].size() - 1) cout << ", ";
+//         }
+//         cout << "]\n";
+//     }
  
-    return 0;
+//     return 0;
+// }
+
+
+//Q - Pascal's Triangle II
+
+// int main(){
+
+//     int row{};
+//     cout<<"Enter the value of Row: ";
+//     cin>>row;
+
+//     vector<vector<int>>pascal(row+1);
+
+//     for(int i = 0;i <= row;++i){
+//         pascal[i].resize(i+1);
+//         pascal[i][0] = 1;
+//         pascal[i][i] = 1;
+
+//         for(int j = 1;j < i;++j){
+//             pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j];
+//         }
+//     }
+//     for(int j = 0;j <= row  ;++j){
+//         cout<<pascal[row][j]<<" ";
+//     }
+        
+// }
+
+//Q - Pascal Value at the given Row 
+/*
+recursive relation for binomial coefficients
+FORMULA->  val = val * (row - j)/(j+1)
+When To use -> 1) We want to compute Pascal’s row efficiently
+               2) Avoid factorial overflow
+               3)Dynamic programming or combinatorics problems
+*/
+// int main() {
+//     int row;
+//     cout << "Enter the row (0-based): ";
+//     cin >> row;
+
+//     long long val = 1;  // first value is always 1
+//     for (int j = 0; j <= row; j++) {
+//         cout << val << " ";
+//         val = val * (row - j) / (j + 1);  // next value
+//     }
+//     cout << endl;
+// }
+
+//======================================================================
+
+//Q - 120. Triangle
+int minimum(vector<vector<int>>&triangle){
+    int smallest{};
+    int sum{};
+
+    for(int i = 0;i < triangle.size();++i){
+        for(int j = 0;j < triangle[i].size();++j){
+            if(triangle.size() <= 1){
+                sum += triangle[i][j];
+            }else{
+                smallest = triangle[i][0];
+                if(triangle[i][j] < smallest){
+                    smallest = triangle[i][j];
+                }
+            }
+        }
+        sum += smallest;
+    }
+    return sum;
+
 }
 
+int main(){
+    int row{};
+    cout<<"Enter number of row: ";
+    cin>>row;
+
+    vector<vector<int>>tri(row);
+
+    for(int i =0;i < row;++i){
+        tri[i].resize(i+1);
+
+        for(int j = 0;j <=i ;++j){
+            cin>>tri[i][j];
+        }
+    }
+    
+    int result = minimum(tri);
+    cout<<result;
 
 
-
+}
 
 
 
