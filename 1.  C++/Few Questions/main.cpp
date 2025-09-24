@@ -953,48 +953,25 @@ When To use -> 1) We want to compute Pascal’s row efficiently
 // }
 
 //======================================================================
+//Q - 121. Best Time to Buy and Sell Stock
 
-//Q - 120. Triangle
-int minimum(vector<vector<int>>&triangle){
-    int smallest{};
+//This Approach has the Worst Time Complexity discovered by the ManKind.
+int main(){
+    //int arr[]{5,8,3,6,4};
+    //int arr[]{2,4,1};
+    int size = sizeof(arr) / sizeof(arr[0]);
     int sum{};
 
-    for(int i = 0;i < triangle.size();++i){
-        for(int j = 0;j < triangle[i].size();++j){
-            if(triangle.size() <= 1){
-                sum += triangle[i][j];
-            }else{
-                smallest = triangle[i][0];
-                if(triangle[i][j] < smallest){
-                    smallest = triangle[i][j];
-                }
+    for(int i = 0;i < size;++i){
+        for(int j = i+1;j < size;++j){
+            if(arr[j] - arr[i] > sum){
+                sum = arr[j] - arr[i];
             }
         }
-        sum += smallest;
     }
-    return sum;
+    cout<<sum;
 
-}
-
-int main(){
-    int row{};
-    cout<<"Enter number of row: ";
-    cin>>row;
-
-    vector<vector<int>>tri(row);
-
-    for(int i =0;i < row;++i){
-        tri[i].resize(i+1);
-
-        for(int j = 0;j <=i ;++j){
-            cin>>tri[i][j];
-        }
-    }
-    
-    int result = minimum(tri);
-    cout<<result;
-
-
+    return 0;
 }
 
 
