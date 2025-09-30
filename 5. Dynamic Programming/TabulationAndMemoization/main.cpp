@@ -33,7 +33,7 @@ int main(){
 #endif
 
 #ifdef Memoization_Form
-
+//Top-Down
 int memo(int n,vector<int> &dp){
     if(n <= 1){
         return n;
@@ -59,7 +59,7 @@ int main(){
 #endif
 
 #ifdef Tabulation_Form
-
+//Bottum-Up
 int main(){
     int n{};
     cout<<"Enter a number: ";

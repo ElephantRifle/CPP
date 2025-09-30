@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<string>
 #include<cmath>
 using namespace std;
 //Factorial
@@ -169,46 +171,79 @@ using namespace std;
 //   return 0;
 // }
 
- firstposition(int array[],int n,int i,int arraySize)
-{
-  if(i==arraySize){
-    return -1;
-  }
+//========================================================================
+//Q - Reverse an Array using Recursion
+//Don't Print reverse of a DS swap it
 
-  if(array[i]==n){
-    return i;
-  }
-  firstposition(array, n, i + 1, arraySize);
-}
- lastposition(int array[],int n,int i,int arraySize)
-{
-  if(i==arraySize){
-    return -1;
-  }
 
-  int restarray{lastposition( array, n, i+1, arraySize)};
+//USING TWO POINERS(Variables)
+// void reverse(vector<int> &arr,int last,int first){
+  
+//   if(last == first){
+//     return;
+//   }
+//   int temp = arr[first];
+//   arr[first] = arr[last];
+//   arr[last] = temp;
+//   reverse(arr,last-1,first+1);
 
-  if(restarray!=-1){
-    return restarray;
-  }
+// }
 
-  if(array[i]==n){
-    return i;
+// int main(){
+//   vector<int>arr{1,2,3,4,2};
+//   int size = arr.size();
+
+//   reverse(arr,size -1,0);
+
+//   for(int i = 0;i < size;++i)
+//     cout<<arr[i]<<" ";
+  
+//   return 0;
+// }
+//===================================================================
+//USING SINGLE POINTER(Variable)
+// void reverse(vector<int>&arr,int left,int size){
+//   if(left >= size/2){
+//     return;
+//   }
+//   int temp = arr[left];
+//   arr[left] = arr[size-1-left];
+//   arr[size-1-left] = temp;
+//   reverse(arr,left+1,size);
+// }
+
+// int main(){
+//   vector<int>arr{1,2,3,4,2};
+//   int size = arr.size();
+//   reverse(arr,0,size);
+//   for(int i = 0 ;i < size;++i){
+//     cout<<arr[i]<<" ";
+//   }
+
+
+//   return 0;
+// }
+//=====================================================================
+
+//Q - Check if a String is Plindrome or Not
+
+void isIt(string str,int size,int i){
+  
+  if(i >= size/2){
+    cout<<"Is Palindrome.";
+    return;
   }
-  return -1;
+  if(str[i] != str[size-1-i]){
+    cout<<"Is not A Palindrome.";
+    return;
+  }
+  isIt(str,size,i+1);
 }
 
 int main(){
-  int array[]{4,2,1,2,5,2,7};
-  int n{};
-  int arraySize = sizeof(array) / sizeof(array[0]);
-
-  cout<<"\nEnter a number: ";
-  cin>>n;
-
-  cout<<"First Position: "<<firstposition(array,n,0,arraySize);
-  cout<<"\nLast Position: "<<lastposition(array,n,0,arraySize);
-
+  string str= "madam";
+  int size = str.length();
+  
+  isIt(str,size,0);
   return 0;
 }
-
