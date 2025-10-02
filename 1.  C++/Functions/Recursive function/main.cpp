@@ -227,23 +227,68 @@ using namespace std;
 
 //Q - Check if a String is Plindrome or Not
 
-void isIt(string str,int size,int i){
+// void isIt(string str,int size,int i){
   
-  if(i >= size/2){
-    cout<<"Is Palindrome.";
+//   if(i >= size/2){
+//     cout<<"Is Palindrome.";
+//     return;
+//   }
+//   if(str[i] != str[size-1-i]){
+//     cout<<"Is not A Palindrome.";
+//     return;
+//   }
+//   isIt(str,size,i+1);
+// }
+
+// int main(){
+//   string str= "madam";
+//   int size = str.length();
+  
+//   isIt(str,size,0);
+//   return 0;
+// }
+
+//===================================================================
+
+//MULTIPLE RECURSIONS
+
+// int fibo(int n){
+//     if(n <= 1){
+//         return n;
+//     }
+//     int prev = fibo(n-1);
+//     int prev2 = fibo(n-2);
+    
+//     return prev + prev2;
+// }
+
+// int main(){
+//     int n{6};
+//     cout<<fibo(n);
+
+//     return 0;
+// }
+
+//==============================================================
+
+//RECURSIONS ON SUBSEQUENCES
+
+void sub(int arr[],int size,int i){
+  if(i >= size){
     return;
   }
-  if(str[i] != str[size-1-i]){
-    cout<<"Is not A Palindrome.";
-    return;
-  }
-  isIt(str,size,i+1);
+  cout<<arr[i]<<" ";
+  cout<<endl;
+  return sub(arr,size,i+1);
+  return sub(arr,size,i+1);
 }
 
 int main(){
-  string str= "madam";
-  int size = str.length();
-  
-  isIt(str,size,0);
+  int arr[]{3,2,1};
+  int size = sizeof(arr) / sizeof(arr[0]);
+
+  sub(arr,size,0);
+
   return 0;
 }
+
