@@ -284,9 +284,11 @@ void sub(int indx,int arr[],vector<int>&db,int size){
     cout<<endl;
     return ;
   }
+  //take or pick the particular index into the subsequence
   db.push_back(arr[indx]);
   sub(indx+1,arr,db,size);
-
+  
+  //not pick or no take condition,this element is not added to the subsequence
   db.pop_back();
   sub(indx+1,arr,db,size);
 }
