@@ -273,22 +273,34 @@ using namespace std;
 
 //RECURSIONS ON SUBSEQUENCES
 
-void sub(int arr[],int size,int i){
-  if(i >= size){
-    return;
+void sub(int indx,int arr[],vector<int>&db,int size){
+  if(indx == size){
+    for(auto temp : db){
+      cout<<temp<<" ";
+    }
+    if(db.size() == 0){
+      cout<<"{}";
+    }
+    cout<<endl;
+    return ;
   }
-  cout<<arr[i]<<" ";
-  cout<<endl;
-  return sub(arr,size,i+1);
-  return sub(arr,size,i+1);
+  db.push_back(arr[indx]);
+  sub(indx+1,arr,db,size);
+
+  db.pop_back();
+  sub(indx+1,arr,db,size);
 }
 
-int main(){
-  int arr[]{3,2,1};
-  int size = sizeof(arr) / sizeof(arr[0]);
 
-  sub(arr,size,0);
+int main(){
+  int arr[]{3,1,2};
+  int size = sizeof(arr) / sizeof(arr[0]);
+  vector<int>db;
+  sub(0,arr,db,size);
+
 
   return 0;
 }
+
+
 
