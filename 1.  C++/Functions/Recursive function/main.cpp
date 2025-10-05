@@ -308,34 +308,70 @@ using namespace std;
 
 //Q - Print Subsequence where sum is equal to K
 
-void sub(int idx,int arr[],vector<int>&db,int size,int k,int sum){
-  if(idx == size || sum > k){ //if we remove (sum > k) it will be exhaustive search means no PRUNING of tree (dry run this bitch)
+// void sub(int idx,int arr[],vector<int>&db,int size,int k,int sum){
+//   if(idx == size || sum > k){ //if we remove (sum > k) it will be exhaustive search means no PRUNING of tree (dry run this bitch)
+//     if(sum == k){
+//       for(auto temp : db){
+//         cout<<temp<<" ";
+//       }
+//       cout<<endl;
+//     }
+//     return;
+//   }
+//   db.push_back(arr[idx]);
+//   sum += arr[idx];
+//   sub(idx+1,arr,db,size,k,sum);
+
+
+//   db.pop_back();
+//   sum -= arr[idx];
+//   sub(idx+1,arr,db,size,k,sum);
+  
+// }
+
+// int main(){
+//   int arr[]{1,2,1};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+//   int k{2};
+//   vector<int>db;
+//   sub(0,arr,db,size,k,0);
+
+//   return 0;
+// }
+
+//================================================================
+//Q - Print only one Subsequence where sum == K
+
+bool sub(int idx,int arr[],vector<int>&db,int k,int size,int sum){
+  if(idx == size || sum > k){
     if(sum == k){
-      for(auto temp : db){
+      for(auto temp: db){
         cout<<temp<<" ";
       }
-      cout<<endl;
+      return true;
     }
-    return;
+    return false;
   }
   db.push_back(arr[idx]);
-  sum += arr[idx];
-  sub(idx+1,arr,db,size,k,sum);
 
+  sum += arr[idx];
+  if(sub(idx+1,arr,db,k,size,sum) == true) return true;
+  
+  sum -= arr[idx];
   
   db.pop_back();
-  sum -= arr[idx];
-  sub(idx+1,arr,db,size,k,sum);
-  
+  if(sub(idx+1,arr,db,k,size,sum) == true) return true;
+  return false;
+
 }
 
 int main(){
   int arr[]{1,2,1};
   int size = sizeof(arr) / sizeof(arr[0]);
-  int k{2};
   vector<int>db;
-  sub(0,arr,db,size,k,0);
+  int k{2};
+  sub(0,arr,db,k,size,0);
+
 
   return 0;
 }
-
