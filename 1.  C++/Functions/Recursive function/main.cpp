@@ -342,36 +342,64 @@ using namespace std;
 //================================================================
 //Q - Print only one Subsequence where sum == K
 
-bool sub(int idx,int arr[],vector<int>&db,int k,int size,int sum){
+// bool sub(int idx,int arr[],vector<int>&db,int k,int size,int sum){
+//   if(idx == size || sum > k){
+//     if(sum == k){
+//       for(auto temp: db){
+//         cout<<temp<<" ";
+//       }
+//       return true;
+//     }
+//     return false;
+//   }
+//   db.push_back(arr[idx]);
+
+//   sum += arr[idx];
+//   if(sub(idx+1,arr,db,k,size,sum) == true) return true;
+  
+//   sum -= arr[idx];
+  
+//   db.pop_back();
+//   if(sub(idx+1,arr,db,k,size,sum) == true) return true;
+//   return false;
+
+// }
+
+// int main(){
+//   int arr[]{1,2,1};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+//   vector<int>db;
+//   int k{2};
+//   sub(0,arr,db,k,size,0);
+
+//   return 0;
+// }
+
+
+//Q -Count the number of subsequence for k = 2
+
+int sub(int idx,int arr[],int size,int k ,int sum){
   if(idx == size || sum > k){
     if(sum == k){
-      for(auto temp: db){
-        cout<<temp<<" ";
-      }
-      return true;
+      return 1;
     }
-    return false;
+    return 0;
   }
-  db.push_back(arr[idx]);
-
   sum += arr[idx];
-  if(sub(idx+1,arr,db,k,size,sum) == true) return true;
-  
-  sum -= arr[idx];
-  
-  db.pop_back();
-  if(sub(idx+1,arr,db,k,size,sum) == true) return true;
-  return false;
+  int l = sub(idx+1,arr,size,k,sum);
 
+  sum -= arr[idx];
+  int r = sub(idx+1,arr,size,k,sum);
+
+  return l + r;
 }
 
 int main(){
   int arr[]{1,2,1};
   int size = sizeof(arr) / sizeof(arr[0]);
-  vector<int>db;
   int k{2};
-  sub(0,arr,db,k,size,0);
 
+  cout<< sub(0,arr,size,k,0);
 
   return 0;
 }
