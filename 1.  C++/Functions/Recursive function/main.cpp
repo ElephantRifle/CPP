@@ -378,28 +378,81 @@ using namespace std;
 
 //Q -Count the number of subsequence for k = 2
 
-int sub(int idx,int arr[],int size,int k ,int sum){
-  if(idx == size || sum > k){
-    if(sum == k){
-      return 1;
+// int sub(int idx,int arr[],int size,int k ,int sum){
+//   if(idx == size || sum > k){ //sum>k only when values are POSITIVE
+//     if(sum == k){
+//       return 1;
+//     }
+//     return 0;
+//   }
+//   sum += arr[idx];
+//   int l = sub(idx+1,arr,size,k,sum);
+
+//   sum -= arr[idx];
+//   int r = sub(idx+1,arr,size,k,sum);
+
+//   return l + r;
+// }
+
+// int main(){
+//   int arr[]{1,2,1};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+//   int k{2};
+
+//   cout<< sub(0,arr,size,k,0);
+
+//   return 0;
+// }
+
+////=============================================================
+//Q - Merge Sort
+
+void merge(int arr[],int low,int mid,int high){
+  int arr_2[high - low + 1];
+  int left = low;
+  int right = mid+1;
+  int k{};
+
+  while(left <= mid && right <= high){
+    if(arr[left] <= arr[right]){
+      arr_2[k++] = arr[left++];
+    }else{
+      arr_2[k++] = arr[right++];
     }
-    return 0;
+    
   }
-  sum += arr[idx];
-  int l = sub(idx+1,arr,size,k,sum);
+  while(left <= mid){
+    arr_2[k++] = arr[left++];
+  }
 
-  sum -= arr[idx];
-  int r = sub(idx+1,arr,size,k,sum);
+  while(right <= high){
+    arr_2[k++] = arr[right++];
+  }
 
-  return l + r;
+  for(int i = low;i <= high;++i){
+    arr[i] = arr_2[i-low];
+  }
+}
+
+void call(int arr[],int low,int high){
+  if(low >= high){
+    return;
+  }
+  int mid = low +(high - low)/2;
+  call(arr,low,mid);
+  call(arr,mid+1,high);
+  merge(arr,low,mid,high);
 }
 
 int main(){
-  int arr[]{1,2,1};
-  int size = sizeof(arr) / sizeof(arr[0]);
-  int k{2};
+  int arr[]{5,4,6,3,2,1,0,7,8,9};
+  int size = sizeof(arr)/sizeof(arr[0]);
 
-  cout<< sub(0,arr,size,k,0);
+  call(arr,0,size-1);
+  for(auto temp : arr){
+    cout<<temp<<" ";
+  }
+
 
   return 0;
 }
