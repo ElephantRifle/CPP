@@ -467,51 +467,129 @@ using namespace std;
 */
 //2.Smaller in the LEFT and larger on the RIGHT
 
+//HOARE's Partition Technique(Two Pointer Approach) 
 
-int pivot(int arr[],int low,int high){
-  int i = low;
-  int j = high;
-  int pivot = low;
+// int pivot(int arr[],int low,int high){
+//   int i = low;
+//   int j = high;
+//   int pivot = low;
 
-  while(i < j){
-    while(arr[i] <= arr[pivot] && i < high){//<= to place similar value on left
-      i++;
-    }
-    while(arr[j] > arr[pivot] && j > low){
-      j--;
-    }
-    if(i < j){
-      int temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
-    }
-  }
-  int temp = arr[pivot];
-  arr[pivot] = arr[j];
-  arr[j] = temp;
-  return j;
-}
+//   while(i < j){
+//     while(arr[i] <= arr[pivot] && i < high){//<= to place similar value on left
+//       i++;
+//     }
+//     while(arr[j] > arr[pivot] && j > low){
+//       j--;
+//     }
+//     if(i < j){
+//       int temp = arr[i];
+//       arr[i] = arr[j];
+//       arr[j] = temp;
+//     }
+//   }
+//   int temp = arr[pivot];
+//   arr[pivot] = arr[j];
+//   arr[j] = temp;
+//   return j;
+// }
+
+// void quick(int arr[],int low,int high){
+//   if(low >= high){
+//     return ;
+//   }
+//   int british= pivot(arr,low,high);
+
+//   quick(arr,low,british-1);
+//   quick(arr,british+1,high);
+// }
+
+// int main(){
+//   int arr[]{4,6,2,5,7,9,1,3};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+
+//   quick(arr,0,size-1);
+
+//   for(auto temp: arr){
+//     cout<<temp <<" ";
+//   }
+
+
+//   return 0;
+// }
+
+//=========================
+//LOMUTO Partition Technique (One For Loop)
+
+// int sort(int arr[],int low,int high){
+//   int i = low-1;
+//   int pivot = arr[high];
+
+//   for(int j = low;j < high;++j){
+//     if(arr[j] <= pivot){
+//       i++;
+//       swap(arr[i],arr[j]);
+//     }
+//   }
+//   swap(arr[high],arr[i+1]);
+//   return i + 1;
+
+// }
+
+// void quick(int arr[],int low,int high){
+//   if(low >= high){
+//     return;
+//   }
+//   int british = sort(arr,low,high);
+//   quick(arr,low,british-1);
+//   quick(arr,british+1,high);
+// }
+
+// int main(){
+//   int arr[]{4,6,2,5,7,9,1,3};
+//   int size = sizeof(arr) / sizeof(arr[0]);
+
+//   quick(arr,0,size-1);
+//   for(auto temp: arr){
+//     cout<<temp<<" ";
+//   }
+
+
+//   return 0;
+// }
+
+//================
+
+//“Three-Way Partitioning Quick Sort”
+//also called Dutch National Flag Quick Sort
 
 void quick(int arr[],int low,int high){
-  if(low >= high){
-    return ;
-  }
-  int british= pivot(arr,low,high);
+  int pivot = arr[high];
+  int i = low;
+  int lt = low;
+  int gt = high;
 
-  quick(arr,low,british-1);
-  quick(arr,british+1,high);
+  while(i <= gt){
+    if(arr[i] < pivot){
+      swap(arr[i++],arr[lt++]);
+    }else if(arr[i] > pivot){
+      swap(arr[i],arr[gt--]);
+    }else{
+      i++;
+    }
+  }
+  quick(arr,low,lt-1);
+  quick(arr,gt+1,high);
+
 }
 
 int main(){
-  int arr[]{5,4,3,2,1};
+  int arr[]{4,6,2,5,7,9,1,3};
   int size = sizeof(arr) / sizeof(arr[0]);
 
   quick(arr,0,size-1);
-
   for(auto temp: arr){
-    cout<<temp <<" ";
+    cout<<temp<<" ";
   }
-
 
   return 0;
 }
