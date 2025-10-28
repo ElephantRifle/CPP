@@ -563,6 +563,7 @@ using namespace std;
 //also called Dutch National Flag Quick Sort
 
 void quick(int arr[],int low,int high){
+  if(low >= high)return;
   int pivot = arr[high];
   int i = low;
   int lt = low;
