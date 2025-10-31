@@ -8,9 +8,11 @@ void count(int arr[],int n){
         if(max < arr[i])max = arr[i];
     }
 
-    int arr2[max+1]{};//Create a Frequency Array
+    //Create a Frequency Array
+    int arr2[max+1]{};
 
-    for(int i = 0 ;i < n;++i){//Inserting and updating the value at index
+    //Inserting and updating the value at index
+    for(int i = 0 ;i < n;++i){
         arr2[arr[i]]++;
     }
     
