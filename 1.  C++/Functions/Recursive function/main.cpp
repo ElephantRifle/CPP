@@ -520,42 +520,42 @@ using namespace std;
 //=========================
 //LOMUTO Partition Technique (One For Loop)
 
-// int sort(int arr[],int low,int high){
-//   int i = low-1;
-//   int pivot = arr[high];
+int sort(int arr[],int low,int high){
+  int i = low-1;
+  int pivot = arr[high];
 
-//   for(int j = low;j < high;++j){
-//     if(arr[j] <= pivot){
-//       i++;
-//       swap(arr[i],arr[j]);
-//     }
-//   }
-//   swap(arr[high],arr[i+1]);
-//   return i + 1;
+  for(int j = low;j < high;++j){
+    if(arr[j] <= pivot){
+      i++;
+      swap(arr[i],arr[j]);
+    }
+  }
+  swap(arr[high],arr[i+1]);
+  return i + 1;
 
-// }
+}
 
-// void quick(int arr[],int low,int high){
-//   if(low >= high){
-//     return;
-//   }
-//   int british = sort(arr,low,high);
-//   quick(arr,low,british-1);
-//   quick(arr,british+1,high);
-// }
+void quick(int arr[],int low,int high){
+  if(low >= high){
+    return;
+  }
+  int british = sort(arr,low,high);
+  quick(arr,low,british-1);
+  quick(arr,british+1,high);
+}
 
-// int main(){
-//   int arr[]{4,6,2,5,7,9,1,3};
-//   int size = sizeof(arr) / sizeof(arr[0]);
+int main(){
+  int arr[]{4,6,2,5,7,9,1,3};
+  int size = sizeof(arr) / sizeof(arr[0]);
 
-//   quick(arr,0,size-1);
-//   for(auto temp: arr){
-//     cout<<temp<<" ";
-//   }
+  quick(arr,0,size-1);
+  for(auto temp: arr){
+    cout<<temp<<" ";
+  }
 
 
-//   return 0;
-// }
+  return 0;
+}
 
 //================
 

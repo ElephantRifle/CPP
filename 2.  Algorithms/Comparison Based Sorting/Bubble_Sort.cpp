@@ -61,9 +61,6 @@ int main() {
         swaped = false;
         for(int j = 0;j < size - i -1 ;++j){
             if(arr[j] > arr[j+1]){
-                // int temp = arr[j+1];
-                // arr[j+1] = arr[j];
-                // arr[j] = temp;
                 swap(arr[j] , arr[j+1]); //using build in function to swap
                 swaped = true;
             }
