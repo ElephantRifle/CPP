@@ -71,14 +71,14 @@ using namespace std;
 // on a specific digit place, e.g. 1s, 10s, 100s)
 //-----------------------------------------------
 void R_sort(int arr[], int size, int place, int max) {
-    const int range = 10;   // Digits range from 0 to 9
-    int count[range]{0};    // Count array to store frequency of each digit
-    int output[size]{0};    // Output array to store sorted numbers temporarily
+    const int range = 10;   
+    int count[range]{0};    
+    int output[size]{0};    
 
     // Step 1: Count occurrences of each digit at the current place value
     for (int i = 0; i < size; ++i) {
-        int digit = (arr[i] / place) % 10; // Extract the current digit
-        count[digit]++;                    // Increment count of that digit
+        int digit = (arr[i] / place) % 10; 
+        count[digit]++;                    
     }
 
     // Step 2: Convert count[] to cumulative count[] 
@@ -91,8 +91,8 @@ void R_sort(int arr[], int size, int place, int max) {
     // Traverse input array in reverse to maintain stability
     for (int i = size - 1; i >= 0; --i) {
         int digit = (arr[i] / place) % 10;
-        output[count[digit] - 1] = arr[i]; // Place element in correct position
-        count[digit]--;                    // Decrement the count
+        output[count[digit] - 1] = arr[i]; 
+        count[digit]--;                    
     }
 
     // Step 4: Copy sorted numbers (based on current digit) back to original array
