@@ -1,8 +1,8 @@
 #include<iostream>
 using std::cout;
 
-//Q - Two Sum Problem (Find two values who's sum == target)
 
+//Q - Two Sum II Problem (Find two values who's sum == target)
 
 //It can be optimally solved by Two Pointers in oppsite direction
 // TC = O(n)
@@ -41,3 +41,4 @@ int main(){
 
     return 0;
 }
+

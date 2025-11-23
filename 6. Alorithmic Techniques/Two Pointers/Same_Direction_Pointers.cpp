@@ -1,31 +1,38 @@
 #include<iostream>
 using std::cout;
+using std::max;
 
 
 
+
+/*Problem:
+Find the maximum sum of a contiguous subarray of size k.
+
+Technique used:
+Two Pointers (same direction) → Sliding Window (fixed window size)*/
 
 int main(){
-    int arr[]{1,2,3,4,5,6,7,8};
+    int arr[]{4,9,1,6,2,1,0};
     int size = sizeof(arr)/sizeof(arr[0]);
-    int target = 10;
+    int target = 4;
 
-    int i = 0;
-    int j = i+1;
-    int sum{};
-
-    while(j < size){
-        sum = arr[i] + arr[j];
-
-        if(sum == target){
-            cout<<i+1<<" "<<j+1;
-            i++;
-            j++;
-        }else if(sum < target){
-            j++;
-        }else{
-            i++;
-        }
+    int left = 0, right = 0;
+    int _max,sum{};
+    while(right < target){
+        sum += arr[right];
+        right++;
     }
+    _max = sum;
+  
+    while(right < size){
+        sum -= arr[left];
+        left++;
+        sum += arr[right];
+        right++;
+        _max = max(_max,sum);
+
+    }
+    cout<<_max;
 
     return 0;
 }
