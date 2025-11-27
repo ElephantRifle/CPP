@@ -977,36 +977,62 @@ When To use -> 1) We want to compute Pascal’s row efficiently
 
 //Q - LCS
 
-// #include <iostream>
+int main() {
+    int arr1[] = {1, 3, 4, 1, 2, 8};
+    int arr2[] = {3, 4, 1, 2, 1, 7};
 
-// using namespace std;
+    int n = sizeof(arr1) / sizeof(arr1[0]);
+    int m = sizeof(arr2) / sizeof(arr2[0]);
 
-// int main() {
-//     int arr1[] = {1, 3, 4, 1};
-//     int arr2[] = {3, 4, 1, 2, 1};
+    // DP table (n+1) x (m+1)
+    int dp[101][101] = {0};
 
-//     int n = 4;
-//     int m = 5;
+    // Build DP table
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
 
-//     int dp[101][101] = {0}; // 2D array
+            if (arr1[i - 1] == arr2[j - 1])
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            else
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
 
-//     // Fill dp table
-//     for (int i = 1; i <= n; i++) {
-//         for (int j = 1; j <= m; j++) {
+    // Length of LCS
+    int length = dp[n][m];
+    cout << "LCS Length = " << length << endl;
 
-//             if (arr1[i - 1] == arr2[j - 1]) {
-//                 dp[i][j] = 1 + dp[i - 1][j - 1];
-//             } 
-//             else {
-//                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-//             }
-//         }
-//     }
+    // Now recover the actual sequence
+    int i = n, j = m;
+    int lcs[101];   // store LCS
+    int idx = 0;
 
-//     cout << "Length of LCS = " << dp[n][m] << endl;
+    while (i > 0 && j > 0) {
 
-//     return 0;
-// }
+        if (arr1[i - 1] == arr2[j - 1]) {
+            lcs[idx++] = arr1[i - 1];
+            i--;
+            j--;
+        }
+        else {
+            if (dp[i - 1][j] > dp[i][j - 1])
+                i--;
+            else
+                j--;
+        }
+    }
+
+    reverse(lcs, lcs + idx);
+
+    // Print LCS values
+    cout << "LCS Sequence: ";
+    for (int k = 0; k < idx; k++)
+        cout << lcs[k] << " ";
+    cout << endl;
+
+    return 0;
+}
+
 
 
 //Q- Matrix Chain Multiplication
