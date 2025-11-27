@@ -956,20 +956,54 @@ When To use -> 1) We want to compute Pascal’s row efficiently
 //Q - 121. Best Time to Buy and Sell Stock
 
 //This Approach has the Worst Time Complexity discovered by the ManKind.
-int main(){
-    //int arr[]{5,8,3,6,4};
-    //int arr[]{2,4,1};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int sum{};
+// int main(){
+//     //int arr[]{5,8,3,6,4};
+//     //int arr[]{2,4,1};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int sum{};
 
-    for(int i = 0;i < size;++i){
-        for(int j = i+1;j < size;++j){
-            if(arr[j] - arr[i] > sum){
-                sum = arr[j] - arr[i];
+//     for(int i = 0;i < size;++i){
+//         for(int j = i+1;j < size;++j){
+//             if(arr[j] - arr[i] > sum){
+//                 sum = arr[j] - arr[i];
+//             }
+//         }
+//     }
+//     cout<<sum;
+
+//     return 0;
+// }
+
+
+//Q - LCS
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int arr1[] = {1, 3, 4, 1};
+    int arr2[] = {3, 4, 1, 2, 1};
+
+    int n = 4;
+    int m = 5;
+
+    int dp[101][101] = {0}; // 2D array
+
+    // Fill dp table
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+
+            if (arr1[i - 1] == arr2[j - 1]) {
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            } 
+            else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
     }
-    cout<<sum;
+
+    cout << "Length of LCS = " << dp[n][m] << endl;
 
     return 0;
 }
