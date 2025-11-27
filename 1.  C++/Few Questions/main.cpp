@@ -977,33 +977,67 @@ When To use -> 1) We want to compute Pascal’s row efficiently
 
 //Q - LCS
 
-#include <iostream>
+// #include <iostream>
 
+// using namespace std;
+
+// int main() {
+//     int arr1[] = {1, 3, 4, 1};
+//     int arr2[] = {3, 4, 1, 2, 1};
+
+//     int n = 4;
+//     int m = 5;
+
+//     int dp[101][101] = {0}; // 2D array
+
+//     // Fill dp table
+//     for (int i = 1; i <= n; i++) {
+//         for (int j = 1; j <= m; j++) {
+
+//             if (arr1[i - 1] == arr2[j - 1]) {
+//                 dp[i][j] = 1 + dp[i - 1][j - 1];
+//             } 
+//             else {
+//                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+//             }
+//         }
+//     }
+
+//     cout << "Length of LCS = " << dp[n][m] << endl;
+
+//     return 0;
+// }
+
+
+//Q- Matrix Chain Multiplication
+#include <iostream>
+#include <climits>
 using namespace std;
 
 int main() {
-    int arr1[] = {1, 3, 4, 1};
-    int arr2[] = {3, 4, 1, 2, 1};
+    int p[] = {10, 20, 30, 40, 30};
+    int n = 5; 
 
-    int n = 4;
-    int m = 5;
+    int m[100][100];
+    for (int i = 1; i < n; ++i)
+        m[i][i] = 0;
 
-    int dp[101][101] = {0}; // 2D array
+    // L = chain length
+    for (int L = 2; L < n; ++L) {
+        for (int i = 1; i < n - L + 1; i++) {
+            int j = i + L - 1;
+            m[i][j] = INT_MAX;
 
-    // Fill dp table
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
+            for (int k = i; k < j; ++k) {
+                int cost = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j];
 
-            if (arr1[i - 1] == arr2[j - 1]) {
-                dp[i][j] = 1 + dp[i - 1][j - 1];
-            } 
-            else {
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                if (cost < m[i][j])
+                    m[i][j] = cost;
             }
         }
     }
 
-    cout << "Length of LCS = " << dp[n][m] << endl;
+    cout << "Minimum multiplications = " << m[1][n-1] << endl;
 
     return 0;
 }
