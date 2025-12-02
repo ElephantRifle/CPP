@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-
+//Q - Find longest length of subarray 
 // int main(){
 //     int arr[]{3,4,5,3};
 //     int size = sizeof(arr) /sizeof(arr[0]);
@@ -17,7 +17,7 @@ using namespace std;
 //     while(right < size){
 //         sum += arr[right];
 
-//         while(sum > target){
+//         while(sum > target){ // use if when asked only length else if subarray is required use while 
 //             sum -= arr[left];
 //             left++;
 //         }
@@ -30,6 +30,9 @@ using namespace std;
 
 //     return 0;
 // }
+
+//Complexity: While O(n+n)
+//COmplecity: if O(n)
 
 
 //Q - Maximum points you can obtain from cards ,we hace to pick 4 cards
