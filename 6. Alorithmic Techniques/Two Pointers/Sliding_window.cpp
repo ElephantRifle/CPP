@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<unordered_map>
 using namespace std;
 
 
@@ -62,8 +63,9 @@ using namespace std;
 
 
 //================================================================
-//Q - 
+//Q -  Longest Substring Without Repeating Characters 
 
+//UN-OPTIMISED WAY
 // int main(){
 //     string arr{"cadbzabcd"};
 //     int size = arr.length();
@@ -94,28 +96,54 @@ using namespace std;
 // }
 
 
-//
-
+//UN-OPTIMISED WAY
 int main(){
     string arr{"cadbzabcd"};
-    vector<int>hash(256,-1);
     int size = arr.length();
+    int max_length{};
+    
+    for(int i = 0;i < size;++i){
+        unordered_map<int,int>seen;
+        seen.reserve(256);
 
-    int max_len{};
-    int left{} ,right {};
-
-    while(right < size){
-        if(hash[arr[right]] != -1 && hash[arr[right]] >= left){
-            left = hash[arr[right]] + 1;
+        for(int j = i;j < size;++j){
+            if(seen[arr[j]] == 1)break;
+            max_length = max(max_length,j-i+1);
+            seen[arr[j]] = 1;
         }
         
-        max_len = max(max_len,right - left + 1);
-        hash[arr[right]] = right;
-        right++;
     }
-
-
-    cout<<max_len;
-
-    return 0;
+    cout<<"Maximum Length->"<<max_length;
 }
+//OPTIMISED WAY 
+
+//INTUTION - we will move left pointer 1 index ahead of Repeating character WHY? cuz if we don't we will never get length greater then max_len 
+//OR  
+//Move left to one past the last occurrence of the repeated character — otherwise the duplicate remains in the window, preventing us from forming a longer valid substring.
+
+// int main(){
+//     string arr{"cadbzabcd"};
+//     vector<int>hash(256,-1);
+//     int size = arr.length();
+
+//     int max_len{};
+//     int left{} ,right {};
+
+//     while(right < size){
+//         char c = arr[right];
+//         if(hash[c] != -1 ){
+//             if(hash[c] >= left){
+//                 left = hash[c] + 1;
+//             }
+//         }
+        
+//         max_len = max(max_len,right - left + 1);
+//         hash[c] = right;
+//         right++;
+//     }
+
+
+//     cout<<max_len;
+
+//     return 0;
+// }
