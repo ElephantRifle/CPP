@@ -100,8 +100,10 @@ using namespace std;
 
 
 //================================================================
-//Q - 
+//Q - Longest Substring without Duplicate Elements
 
+
+//WITHOUT HASH MAP
 // int main(){
 //     string arr{"cadbzabcd"};
 //     int size = arr.length();
@@ -132,8 +134,32 @@ using namespace std;
 // }
 
 
-//
+//WITh HASHMAP
+//Include <unordered_map>
+int main() {
+    string s{"cadbzabcd"};
+    int n = s.length();
+    int maxlen{};
+    
+    unordered_map<char,int>seen;
+    seen.reserve(256);
+    
+    for(int i = 0;i < n;++i){
+        seen.clear();
+        for(int j = i;j < n;++j){
+            if(seen[s[j]] == 1)break;
+            maxlen = max(maxlen,j-i+1);
+            seen[s[j]] = 1;
+        }
+    }
+    cout<<maxlen;
 
+    return 0;
+}
+
+
+
+//OPTIMIZED WAY
 int main(){
     string arr{"cadbzabcd"};
     vector<int>hash(256,-1);
