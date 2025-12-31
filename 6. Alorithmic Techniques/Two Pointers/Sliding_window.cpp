@@ -104,6 +104,7 @@ using namespace std;
 
 
 //WITHOUT HASH MAP
+// Complexity : O(n^3)
 // int main(){
 //     string arr{"cadbzabcd"};
 //     int size = arr.length();
@@ -136,30 +137,32 @@ using namespace std;
 
 //WITH HASH MAP
 //Include <unordered_map>
-int main() {
-    string s{"cadbzabcd"};
-    int n = s.length();
-    int maxlen{};
+//Complexity: O(n^2)
+// int main() {
+//     string s{"cadbzabcd"};
+//     int n = s.length();
+//     int maxlen{};
     
-    unordered_map<char,int>seen;
-    seen.reserve(256);
+//     unordered_map<char,int>seen;
+//     seen.reserve(256);
     
-    for(int i = 0;i < n;++i){
-        seen.clear();
-        for(int j = i;j < n;++j){
-            if(seen[s[j]] == 1)break;
-            maxlen = max(maxlen,j-i+1);
-            seen[s[j]] = 1;
-        }
-    }
-    cout<<maxlen;
+//     for(int i = 0;i < n;++i){
+//         seen.clear();
+//         for(int j = i;j < n;++j){
+//             if(seen[s[j]] == 1)break;
+//             maxlen = max(maxlen,j-i+1);
+//             seen[s[j]] = 1;
+//         }
+//     }
+//     cout<<maxlen;
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 
 //OPTIMIZED WAY
+//Complexity: O(n)
 int main(){
     string arr{"cadbzabcd"};
     vector<int>hash(256,-1);
