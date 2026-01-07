@@ -182,11 +182,8 @@ int main(){
 
 
 //     cout<<max_len;
-
-<<<<<<< HEAD
 //     return 0;
 // }
-=======
-    return 0;
-}
->>>>>>> 714f4e333e2696a055e32d666539c0eb90a36b2f
+
+  
+
