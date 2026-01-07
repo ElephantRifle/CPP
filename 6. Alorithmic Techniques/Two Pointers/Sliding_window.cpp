@@ -18,7 +18,7 @@ using namespace std;
 //     while(right < size){
 //         sum += arr[right];
 
-//         while(sum > target){ // use if when asked only length else if subarray is required use while 
+//         while(sum > target){ // use if when asked only length   else if subarray is required use while 
 //             sum -= arr[left];
 //             left++;
 //         }
@@ -101,7 +101,10 @@ using namespace std;
 
 
 //================================================================
-//Q - 
+//Q - Find Longest Substring with Non Repeating Character
+
+//Un-optimised way
+//Complexity = O(n^3)
 
 // int main(){
 //     string arr{"cadbzabcd"};
@@ -135,28 +138,37 @@ using namespace std;
 
 //
 
-int main(){
-    string arr{"cadbzabcd"};
-    int size = arr.length();
-    int max_length{};
-    
-    for(int i = 0;i < size;++i){
-        unordered_map<int,int>seen;
-        seen.reserve(256);
 
-        for(int j = i;j < size;++j){
-            if(seen[arr[j]] == 1)break;
-            max_length = max(max_length,j-i+1);
-            seen[arr[j]] = 1;
-        }
+//Un-Optimised Way using HASH MAP 
+//Complexity = O(n^2)
+
+// int main(){
+//     string arr{"cadbzabcd"};
+//     int size = arr.length();
+//     int max_length{};
+    
+//     for(int i = 0;i < size;++i){
+//         unordered_map<int,int>seen;
+//         seen.reserve(256);
+
+//         for(int j = i;j < size;++j){
+//             if(seen[arr[j]] == 1)break;
+//             max_length = max(max_length,j-i+1);
+//             seen[arr[j]] = 1;
+//         }
         
-    }
-    cout<<"Maximum Length->"<<max_length;
-}
+//     }
+//     cout<<"Maximum Length->"<<max_length;
+// }
+
+
+
 //OPTIMISED WAY 
 
 //INTUTION - we will move left pointer 1 index ahead of Repeating character WHY? cuz if we don't we will never get length greater then max_len 
+
 //OR  
+
 //Move left to one past the last occurrence of the repeated character — otherwise the duplicate remains in the window, preventing us from forming a longer valid substring.
 
 // int main(){
@@ -169,10 +181,8 @@ int main(){
 
 //     while(right < size){
 //         char c = arr[right];
-//         if(hash[c] != -1 ){
-//             if(hash[c] >= left){
-//                 left = hash[c] + 1;
-//             }
+//         if(hash[c] != -1 && hash[c] >= left ){
+//             left = hash[c] + 1;
 //         }
         
 //         max_len = max(max_len,right - left + 1);
@@ -185,5 +195,24 @@ int main(){
 //     return 0;
 // }
 
-  
 
+//==========================================================
+//485. Max Consecutive Ones(Sliding Window (fixed condition))
+
+// int main(){
+//     vector<int>nums{1,1,1,1,0,1,1,1};
+//     int size = nums.size();
+
+//     int left{},right{};
+//     int maxlen{};
+
+//     while(right < size){
+//       if(nums[right] == 0){
+//         left = right + 1;
+//       }
+//       maxlen = max(maxlen,right - left + 1);
+//       right++;
+//     }
+//     cout<<"MAX ONES->"<<maxlen;
+
+// }
