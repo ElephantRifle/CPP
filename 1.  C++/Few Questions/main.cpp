@@ -956,20 +956,114 @@ When To use -> 1) We want to compute Pascal’s row efficiently
 //Q - 121. Best Time to Buy and Sell Stock
 
 //This Approach has the Worst Time Complexity discovered by the ManKind.
-int main(){
-    //int arr[]{5,8,3,6,4};
-    //int arr[]{2,4,1};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int sum{};
+// int main(){
+//     //int arr[]{5,8,3,6,4};
+//     //int arr[]{2,4,1};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     int sum{};
 
-    for(int i = 0;i < size;++i){
-        for(int j = i+1;j < size;++j){
-            if(arr[j] - arr[i] > sum){
-                sum = arr[j] - arr[i];
+//     for(int i = 0;i < size;++i){
+//         for(int j = i+1;j < size;++j){
+//             if(arr[j] - arr[i] > sum){
+//                 sum = arr[j] - arr[i];
+//             }
+//         }
+//     }
+//     cout<<sum;
+
+//     return 0;
+// }
+
+
+//Q - LCS
+
+int main() {
+    int arr1[] = {1, 3, 4, 1, 2, 8};
+    int arr2[] = {3, 4, 1, 2, 1, 7};
+
+    int n = sizeof(arr1) / sizeof(arr1[0]);
+    int m = sizeof(arr2) / sizeof(arr2[0]);
+
+    // DP table (n+1) x (m+1)
+    int dp[101][101] = {0};
+
+    // Build DP table
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+
+            if (arr1[i - 1] == arr2[j - 1])
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            else
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+
+    // Length of LCS
+    int length = dp[n][m];
+    cout << "LCS Length = " << length << endl;
+
+    // Now recover the actual sequence
+    int i = n, j = m;
+    int lcs[101];   // store LCS
+    int idx = 0;
+
+    while (i > 0 && j > 0) {
+
+        if (arr1[i - 1] == arr2[j - 1]) {
+            lcs[idx++] = arr1[i - 1];
+            i--;
+            j--;
+        }
+        else {
+            if (dp[i - 1][j] > dp[i][j - 1])
+                i--;
+            else
+                j--;
+        }
+    }
+
+    reverse(lcs, lcs + idx);
+
+    // Print LCS values
+    cout << "LCS Sequence: ";
+    for (int k = 0; k < idx; k++)
+        cout << lcs[k] << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+
+//Q- Matrix Chain Multiplication
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int main() {
+    int p[] = {10, 20, 30, 40, 30};
+    int n = 5; 
+
+    int m[100][100];
+    for (int i = 1; i < n; ++i)
+        m[i][i] = 0;
+
+    // L = chain length
+    for (int L = 2; L < n; ++L) {
+        for (int i = 1; i < n - L + 1; i++) {
+            int j = i + L - 1;
+            m[i][j] = INT_MAX;
+
+            for (int k = i; k < j; ++k) {
+                int cost = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j];
+
+                if (cost < m[i][j])
+                    m[i][j] = cost;
             }
         }
     }
-    cout<<sum;
+
+    cout << "Minimum multiplications = " << m[1][n-1] << endl;
 
     return 0;
 }
