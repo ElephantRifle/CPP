@@ -234,11 +234,9 @@ int main(){
     }
     while(zero_count > 1){
       if(arr[left] == 0){
-        left++;
         zero_count--;
       }
       left++;
-      zero_count--;
     }
     maxlen = max(maxlen,right - left + 1);
     right++;
