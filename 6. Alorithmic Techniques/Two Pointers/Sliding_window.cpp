@@ -219,7 +219,7 @@ using namespace std;
 //=============================================================
 
 //Q- Max Consecutive Ones II 
-
+//Complexity = O(n),O(1)
 int main(){
   int arr[]{1,0,0,1,1,1,0};
   int size = sizeof(arr)/sizeof(arr[0]);
