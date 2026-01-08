@@ -216,3 +216,34 @@ using namespace std;
 //     cout<<"MAX ONES->"<<maxlen;
 
 // }
+//=============================================================
+
+//Q- Max Consecutive Ones II 
+
+int main(){
+  int arr[]{1,0,0,1,1,1,0};
+  int size = sizeof(arr)/sizeof(arr[0]);
+
+  int left{},right{};
+  int maxlen{};
+  int zero_count{};
+
+  while(right < size){
+    if(arr[right] == 0){
+      zero_count++;
+    }
+    while(zero_count > 1){
+      if(arr[left] == 0){
+        left++;
+        zero_count--;
+      }
+      left++;
+      zero_count--;
+    }
+    maxlen = max(maxlen,right - left + 1);
+    right++;
+  }
+  cout<<maxlen;
+
+  return 0;
+}
