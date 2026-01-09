@@ -220,19 +220,50 @@ using namespace std;
 
 //Q- Max Consecutive Ones II 
 //Complexity = O(n),O(1)
+// int main(){
+//   int arr[]{1,0,0,1,1,1,0};
+//   int size = sizeof(arr)/sizeof(arr[0]);
+
+//   int left{},right{};
+//   int maxlen{};
+//   int zero_count{};
+
+//   while(right < size){
+//     if(arr[right] == 0){
+//       zero_count++;
+//     }
+//     while(zero_count > 1){
+//       if(arr[left] == 0){
+//         zero_count--;
+//       }
+//       left++;
+//     }
+//     maxlen = max(maxlen,right - left + 1);
+//     right++;
+//   }
+//   cout<<maxlen;
+
+//   return 0;
+// }
+
+//===========================================================
+//Q - Max Consecutive Ones III
 int main(){
   int arr[]{1,0,0,1,1,1,0};
   int size = sizeof(arr)/sizeof(arr[0]);
 
   int left{},right{};
-  int maxlen{};
-  int zero_count{};
+  int maxlen{},zero_count{};
+
+  int user_pref{};
+  cout<<"->";
+  cin>>user_pref;
 
   while(right < size){
     if(arr[right] == 0){
       zero_count++;
     }
-    while(zero_count > 1){
+    while(zero_count > user_pref){
       if(arr[left] == 0){
         zero_count--;
       }
@@ -240,8 +271,10 @@ int main(){
     }
     maxlen = max(maxlen,right - left + 1);
     right++;
+
   }
   cout<<maxlen;
+
 
   return 0;
 }
