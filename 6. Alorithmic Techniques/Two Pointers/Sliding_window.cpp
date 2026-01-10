@@ -283,39 +283,76 @@ using namespace std;
 // Q - 904 Fruit into Basket
 
 //Using Hash Map (unordered_map)
-int main(){
-  int arr[]{3,3,3,1,2,1,1,2,3,3,2};
-  int size = sizeof(arr)/sizeof(arr[0]);
+// int main(){
+//   int arr[]{3,3,3,1,2,1,1,2,3,3,2};
+//   int size = sizeof(arr)/sizeof(arr[0]);
 
-  int left{},right{};
-  int maxlen{};
-  int k{};
+//   int left{},right{};
+//   int maxlen{};
+//   int k{};
   
-  cout<<"Values->";
-  cin>>k;
+//   cout<<"Values->";
+//   cin>>k;
 
-  unordered_map<int,int>basket;
+//   unordered_map<int,int>basket;
 
-  while(right < size){
-    basket[arr[right]]++;
+//   while(right < size){
+//     basket[arr[right]]++;
 
-    if(basket.size() > k){
-      while(basket.size() > k){
-        basket[arr[left]]--;
+//     if(basket.size() > k){
+//       while(basket.size() > k){
+//         basket[arr[left]]--;
+        
+//         if(basket[arr[left]] == 0){
+//           basket.erase(arr[left]);
+//         }
+//         left++;
+//       }
+//     }
+//     //if(basket.size() <= k ){} NOT NEEDED ALLREADY CHECKED
+//     maxlen = max(maxlen,right - left + 1);
+//     right++;
 
-        if(basket[arr[left]] == 0){
-          basket.erase(arr[left]);
-        }
-        left++;
-      }
-    }
-    //if(basket.size() <= k ) NOT NEEDED ALLREADY CHECKED ABOVE
-    maxlen = max(maxlen,right - left + 1);
-    right++;
-
-  }
-  cout<<maxlen;
+//   }
+//   cout<<maxlen;
+//   return 0;
+// }
 
 
-  return 0;
-}
+//BIT MORE OPTIMIZED
+//(Currenly Not Working)
+
+// int main(){
+//   int arr[]{};
+//   int size = sizeof(arr)/sizeof(arr[0]);
+
+//   int left{},right{};
+//   int maxlen{};
+
+//   int k{};
+//   cout<<"->";
+//   cin>>k;
+
+//   unordered_map<int,int>basket;
+
+//   while(right < size){
+//     basket[arr[right]]++;
+
+//     if(basket.size() > k){
+//       basket[arr[left]]--;
+
+//       if(basket[arr[left]] == 0){
+//         basket.erase(arr[left]);
+//       }
+//       left++;
+//     }
+//     if(basket.size() <= k){
+//       maxlen = max(maxlen,right - left + 1);
+//       right++;
+//     }
+//   }
+//   cout<<maxlen;
+
+
+//   return 0;
+// }
