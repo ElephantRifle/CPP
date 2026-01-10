@@ -248,28 +248,70 @@ using namespace std;
 
 //===========================================================
 //Q - Max Consecutive Ones III
+// int main(){
+//   int arr[]{1,0,0,1,1,1,0};
+//   int size = sizeof(arr)/sizeof(arr[0]);
+
+//   int left{},right{};
+//   int maxlen{},zero_count{};
+
+//   int user_pref{};
+//   cout<<"->";
+//   cin>>user_pref;
+
+//   while(right < size){
+//     if(arr[right] == 0){
+//       zero_count++;
+//     }
+//     while(zero_count > user_pref){
+//       if(arr[left] == 0){
+//         zero_count--;
+//       }
+//       left++;
+//     }
+//     maxlen = max(maxlen,right - left + 1);
+//     right++;
+
+//   }
+//   cout<<maxlen;
+
+
+//   return 0;
+// }
+
+//=============================================================
+// Q - 904 Fruit into Basket
+
+//Using Hash Map (unordered_map)
 int main(){
-  int arr[]{1,0,0,1,1,1,0};
+  int arr[]{3,3,3,1,2,1,1,2,3,3,2};
   int size = sizeof(arr)/sizeof(arr[0]);
 
   int left{},right{};
-  int maxlen{},zero_count{};
+  int maxlen{};
+  int k{};
+  
+  cout<<"Values->";
+  cin>>k;
 
-  int user_pref{};
-  cout<<"->";
-  cin>>user_pref;
+  unordered_map<int,int>basket;
 
   while(right < size){
-    if(arr[right] == 0){
-      zero_count++;
-    }
-    while(zero_count > user_pref){
-      if(arr[left] == 0){
-        zero_count--;
+    basket[arr[right]]++;
+
+    if(basket.size() > k){
+      while(basket.size() > k){
+        basket[arr[left]]--;
+
+        if(basket[arr[left]] == 0){
+          basket.erase(arr[left]);
+        }
+        left++;
       }
-      left++;
     }
-    maxlen = max(maxlen,right - left + 1);
+    if(basket.size() <= k ){
+      maxlen = max(maxlen,right - left + 1);
+    }
     right++;
 
   }
