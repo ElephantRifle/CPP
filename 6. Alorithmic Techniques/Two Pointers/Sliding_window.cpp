@@ -309,9 +309,8 @@ int main(){
         left++;
       }
     }
-    if(basket.size() <= k ){
-      maxlen = max(maxlen,right - left + 1);
-    }
+    //if(basket.size() <= k ) NOT NEEDED ALLREADY CHECKED ABOVE
+    maxlen = max(maxlen,right - left + 1);
     right++;
 
   }
