@@ -421,7 +421,7 @@ This same template solves:
 
 //     //int left{},right{};
 //     int count{};
-//     int present[3]{0}; //USE THIS TO MAINTAIN OR HASHMAP(maybe Overhead)
+//     int present[3]{0};
 
 //     for(int i = 0;i < length;++i){
 //         for(int j = i;j < length;++j){
@@ -439,14 +439,25 @@ This same template solves:
 //Time Complexity: O(n)
 
 int main(){
-    string arr{"abcabc"};
+    string arr{"bbacb"};
     int length = arr.length();
 
-    int left{},right{};
+    int right{};
     int count{};
-    int freq[3]{0};
+    int freq[3]{-1,-1,-1};//freq[3]{-1};wont work
+    /*WHY? C++ Initialization RULE
+    If fewer initializers are provided than the array size,
+    remaining elements are value-initialized
+   */
+    while(right < length){
+        freq[arr[right] - 'a'] = right;
 
-
+        if(freq[0] != -1 && freq[1] != -1 && freq[2] != -1){
+            count = count + (1+min(freq[0],min(freq[1],freq[2])));
+        }
+        right++;
+    }
+    cout<<count;
 
     return 0;
 }
