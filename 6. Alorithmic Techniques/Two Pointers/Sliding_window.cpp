@@ -196,6 +196,22 @@ using namespace std;
 // }
 
 
+/*  
+TEMPLATE:
+    expand right
+    update freq
+    while invalid:
+        shrink left
+    update answer
+
+This same template solves:
+1.Longest substring without repeating characters
+2.Fruit into baskets
+3.Longest subarray with sum ≤ K
+4.Max consecutive ones (with flips)
+
+*/
+
 //==========================================================
 //485. Max Consecutive Ones(Sliding Window (fixed condition))
 
@@ -356,3 +372,42 @@ using namespace std;
 
 //   return 0;
 // }
+
+//==============================================================
+//340 - Longest Substring with atmost K distinct character
+
+// int main(){
+//     string arr{"aaabbccd"};
+//     int length = arr.length();
+
+//     int left{},right{};
+//     int maxlen{};
+//     int k{};
+//     cout<<"->";
+//     cin>>k;
+
+//     unordered_map<char,int>limit;
+    
+
+//     while(right < length){
+//         //char c = arr[right];
+//         limit[arr[right]]++;
+
+//         while(limit.size() > k){//USE if IT WORKS TOO,BUT AGAINST PRICIPLE
+//             limit[arr[left]]--;
+
+//             if(limit[arr[left]] == 0){
+//                 limit.erase(arr[left]);
+//             }
+//             left++;
+//         }
+//         maxlen = max(maxlen,right - left + 1);
+//         right++;
+
+//     }
+//     cout<<maxlen;
+
+//     return 0;
+// }
+
+//==============================================================
