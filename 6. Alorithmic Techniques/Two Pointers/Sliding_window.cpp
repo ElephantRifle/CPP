@@ -339,7 +339,7 @@ This same template solves:
 //(Currenly Not Working)
 
 // int main(){
-//   int arr[]{};
+//   int arr[]{1, 2, 3, 4, 2, 2};
 //   int size = sizeof(arr)/sizeof(arr[0]);
 
 //   int left{},right{};
@@ -354,7 +354,7 @@ This same template solves:
 //   while(right < size){
 //     basket[arr[right]]++;
 
-//     if(basket.size() > k){
+//     while(basket.size() > k){//USE if BUT AGAINST ALGO PRINCIPLE ALSO REMOVE 356 line if condition 
 //       basket[arr[left]]--;
 
 //       if(basket[arr[left]] == 0){
@@ -411,3 +411,42 @@ This same template solves:
 // }
 
 //==============================================================
+//Q -1358  Number of substrings containing all three characters
+//   (Given a string s consisting only of characters a, b and c)
+
+// Time Complexity: O(n^2)
+// int main(){
+//     string arr{"abcabc"};
+//     int length = arr.length();
+
+//     //int left{},right{};
+//     int count{};
+//     int present[3]{0}; //USE THIS TO MAINTAIN OR HASHMAP(maybe Overhead)
+
+//     for(int i = 0;i < length;++i){
+//         for(int j = i;j < length;++j){
+//             present[arr[j] - 'a'] = 1; // arr[j] = a -> a - a = 0 index
+//              if(present[0] + present[1] + present[2] == 3){
+//                 count++;
+//             }
+//         }
+//         present[0] = present[1] = present[2] = 0;
+//     }
+//     cout<<count;
+//     return 0;
+// }
+
+//Time Complexity: O(n)
+
+int main(){
+    string arr{"abcabc"};
+    int length = arr.length();
+
+    int left{},right{};
+    int count{};
+    int freq[3]{0};
+
+
+
+    return 0;
+}
