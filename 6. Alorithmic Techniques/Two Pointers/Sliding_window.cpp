@@ -496,22 +496,63 @@ This same template solves:
 // }
 
 //Complexity = O(n)(Sliding Window)
+//IN THE WINDOW CHANGE ITS LENGTH
+// int main(){
+//     string arr{"AABABBB"};
+//     int len = arr.length();
+//     int left{},right{};
+//     int maxlen{},maxfreq{};
+//     int k{};
+
+//     cout<<"->";
+//     cin>>k;
+
+//     vector<int>freq(26,0);
+    
+
+//     while(right < len){
+//         freq[arr[right] - 'A']++;
+//         maxfreq = max(maxfreq,freq[arr[right] - 'A']);
+
+//         while((right - left + 1) - maxfreq > k){
+//             freq[arr[left] - 'A']--;
+//             left++;
+//         }
+//         maxlen = max(maxlen, right - left + 1);
+//         right++;
+//     }
+//     cout<<"Max: "<<maxlen;
+
+//     return 0;
+// }
+
+
+//SAME COMPLEXITY BUT IN THIS WE WONT CHANGE THE MAXLEN WINDOW WE GOT
+//OR WE WONT WE DECREASING THE MAXLEN SIZE WINDOW LIKE PREVIOUS
 
 int main(){
-    string arr{"AABABBA"};
+    string arr{"AABABBB"};
     int len = arr.length();
     int left{},right{};
-    int maxlen{};
-
+    int maxlen{},maxfreq{};
+    int k{};
+    cout<<"->";
+    cin>>k;
     
-    while(left < len){
-        vector<int>freq(26,0);
-        int maxfreq{};
-        while(){
-            
-        }
+    vector<int>freq(26,0);
 
+    while(right < len){
+        freq[arr[right] - 'A']++;
+        maxfreq = max(maxfreq,freq[arr[right] - 'A']);
+
+        if((right - left + 1) - maxfreq > k){
+            freq[arr[left] - 'A']--;
+            left++;
+        }
+        maxlen = max(maxlen,right - left + 1);
+        right++;
     }
+    cout<<maxlen;
 
     return 0;
 }
