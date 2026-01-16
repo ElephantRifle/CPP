@@ -438,26 +438,80 @@ This same template solves:
 
 //Time Complexity: O(n)
 
+// int main(){
+//     string arr{"bbacb"};
+//     int length = arr.length();
+
+//     int right{};
+//     int count{};
+//     int freq[3]{-1,-1,-1};//freq[3]{-1};wont work
+//     /*WHY? C++ Initialization RULE
+//     If fewer initializers are provided than the array size,
+//     remaining elements are value-initialized
+//    */
+//     while(right < length){
+//         freq[arr[right] - 'a'] = right;
+
+//         if(freq[0] != -1 && freq[1] != -1 && freq[2] != -1){
+//             count = count + (1+min(freq[0],min(freq[1],freq[2])));
+//         }
+//         right++;
+//     }
+//     cout<<count;
+
+//     return 0;
+// }
+
+//==================================================================
+//Q - 424 Longest Repeating character Replacement
+
+//Complexity = O(n^2)
+//Space = constant O(1)
+// int main(){
+//     string arr{"AABABBA"};
+//     int len = arr.length();
+//     int maxlen{};
+//     int k{};
+//     cout<<"->";
+//     cin>>k;
+    
+//     for(int i = 0;i < len;++i){
+
+//         vector<int>freq(26,0);
+//         int maxfreq{};
+
+//         for(int j = i;j < len;++j){
+//             freq[arr[j] - 'A']++;
+//             maxfreq = max(maxfreq, freq[arr[j] - 'A']);
+//             int changes = (j-i+1) - maxfreq;
+//             if(changes <= k){
+//                 maxlen = max(maxlen,j - i + 1);
+//             }else{
+//                 break;
+//             }
+//         }
+//     }
+//     cout<<"Max: "<<maxlen;
+//     return 0;
+// }
+
+//Complexity = O(n)(Sliding Window)
+
 int main(){
-    string arr{"bbacb"};
-    int length = arr.length();
+    string arr{"AABABBA"};
+    int len = arr.length();
+    int left{},right{};
+    int maxlen{};
 
-    int right{};
-    int count{};
-    int freq[3]{-1,-1,-1};//freq[3]{-1};wont work
-    /*WHY? C++ Initialization RULE
-    If fewer initializers are provided than the array size,
-    remaining elements are value-initialized
-   */
-    while(right < length){
-        freq[arr[right] - 'a'] = right;
-
-        if(freq[0] != -1 && freq[1] != -1 && freq[2] != -1){
-            count = count + (1+min(freq[0],min(freq[1],freq[2])));
+    
+    while(left < len){
+        vector<int>freq(26,0);
+        int maxfreq{};
+        while(){
+            
         }
-        right++;
+
     }
-    cout<<count;
 
     return 0;
 }
