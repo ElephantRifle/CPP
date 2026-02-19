@@ -12,8 +12,8 @@ Space Complexity: 𝑂(log𝑛)  (average case for recursion)
 //This is the code to put a pivot at its correct place
 
 //#define code1
-//#define values 
-#define with_FOR_LOOP
+#define values 
+//#define with_FOR_LOOP
 
 
 #ifdef code1

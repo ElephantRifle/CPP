@@ -9,8 +9,8 @@ How it works: Divides the array into two halves, sorts them recursively, and the
 */
 
 //#define code1
-//#define without_comments
-#define with_FOR_LOOP
+#define without_comments
+//#define with_FOR_LOOP
 
 
 #ifdef code1
