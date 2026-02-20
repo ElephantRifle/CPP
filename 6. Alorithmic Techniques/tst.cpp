@@ -4,26 +4,22 @@
 
 using namespace std;
 int main(){
-    string s = "cadbzabcd";
-    int len = s.length();
+    int arr[]{1,1,0,1,1,1,0,1,1,1,1,0};
+    int size = sizeof(arr)/sizeof(arr[0]);
 
-    vector<int>hash(256,-1);
-
-    int i{},j{};
+    int left,right{};
     int maxlen{};
 
-    while(j < len){
-        char ch = s[j];
-
-        if(hash[ch] != -1 && i <= hash[ch]){
-            i = hash[ch] + 1;
+    while(right < size){
+        if(arr[right] == 0){
+            left = right + 1;
         }
-        maxlen = max(maxlen, j-i+1);
-        hash[ch] = j;
-        j++;
-
+        maxlen = max(maxlen,right - left + 1);
+        right++;
     }
-    cout<<maxlen;
+    
+    cout<< maxlen;
 
+ 
     return 0;
 }
