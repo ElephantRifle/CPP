@@ -462,6 +462,31 @@ This same template solves:
 //     return 0;
 // }
 
+//ONE MORE WAY USING VECTOR
+// int main() {
+//     string arr{"aabcabc"};
+//     int len = arr.length();
+    
+//     int count{};
+//     int left{},right{};
+    
+//     vector<int>freq(3,0);
+    
+//     while(right < len){
+//         freq[arr[right] - 'a']++;
+        
+//         while(freq[0] > 0 && freq[1]>0 && freq[2]> 0){
+//             count += len - right;
+//             freq[arr[left] - 'a']--;
+//             left++;
+//         }
+//         right++;
+//     }
+//     cout<<count;
+    
+//     return 0;
+// }
+
 //==================================================================
 //Q - 424 Longest Repeating character Replacement
 
