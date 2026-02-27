@@ -624,6 +624,8 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //------------
 
 //CORRECT SOLUTION 
+//TC = O(2 * 2N) -> O(4N) -> O(n)
+//SC = O(1)
 int fun(int arr[],int goal,int size){
     int temp{},sum{};
     int left{},right{};
