@@ -555,30 +555,102 @@ This same template solves:
 //SAME COMPLEXITY BUT IN THIS WE WONT CHANGE THE MAXLEN WINDOW WE GOT
 //OR WE WONT WE DECREASING THE MAXLEN SIZE WINDOW LIKE PREVIOUS
 
-int main(){
-    string arr{"AABABBB"};
-    int len = arr.length();
-    int left{},right{};
-    int maxlen{},maxfreq{};
-    int k{};
-    cout<<"->";
-    cin>>k;
+// int main(){
+//     string arr{"AABABBB"};
+//     int len = arr.length();
+//     int left{},right{};
+//     int maxlen{},maxfreq{};
+//     int k{};
+//     cout<<"->";
+//     cin>>k;
     
-    vector<int>freq(26,0);
+//     vector<int>freq(26,0);
 
-    while(right < len){
-        freq[arr[right] - 'A']++;
-        maxfreq = max(maxfreq,freq[arr[right] - 'A']);
+//     while(right < len){
+//         freq[arr[right] - 'A']++;
+//         maxfreq = max(maxfreq,freq[arr[right] - 'A']);
 
-        if((right - left + 1) - maxfreq > k){
-            freq[arr[left] - 'A']--;
+//         if((right - left + 1) - maxfreq > k){
+//             freq[arr[left] - 'A']--;
+//             left++;
+//         }
+//         maxlen = max(maxlen,right - left + 1);
+//         right++;
+//     }
+//     cout<<maxlen;
+
+//     return 0;
+// }
+
+//=================================================================================================
+// Q - 930 . Binary subarray with sum
+
+/* 1.If we try to solve this problem using a normal sliding window (moving right forward and shrinking left only 
+when temp == goal), we may miss valid subarrays, especially when the array contains 0s, because multiple subarrays 
+can end at the same right.
+
+2.So instead of counting subarrays with sum exactly equal to goal directly, we first count all subarrays 
+whose sum is ≤ goal using a sliding window (atMost(goal)).
+
+3.Similarly, we count all subarrays whose sum is ≤ goal − 1 using the same logic (atMost(goal - 1)).
+
+4.Finally, we subtract these two results:
+. atMost(goal) − atMost(goal − 1)
+. This gives the number of subarrays whose sum is exactly equal to goal.
+*/
+//DRY RUN THIS CODE TO UNDERSTAND WHY TRADITIONAL APPROACH FAILS
+
+// int main() {
+//    int arr[]{1,0,1,0,1};
+//    int size = sizeof(arr)/sizeof(arr[0]);
+   
+//    int temp{},sum{};
+//    int left{},right{};
+//    int goal = 2;
+   
+//    while(right < size){
+//        temp += arr[right];
+      
+//         while(temp > goal){
+//             temp -= arr[left];
+//             left++;
+//         }
+//        right++;
+//        sum += (right - left + 1);
+//    }
+//    cout<<sum;
+//    return 0;
+// }
+//------------
+
+//CORRECT SOLUTION 
+int fun(int arr[],int goal,int size){
+    int temp{},sum{};
+    int left{},right{};
+    
+    while(right < size){
+        temp += arr[right];
+        while(temp > goal){
+            temp -= arr[left];
             left++;
         }
-        maxlen = max(maxlen,right - left + 1);
-        right++;
-    }
-    cout<<maxlen;
-
-    return 0;
+       sum += (right - left + 1);
+       right++;
+   }
+   return sum;
 }
+int main() {
+   int arr[]{1,0,1,0,1};
+   int size = sizeof(arr)/sizeof(arr[0]);
+   int goal = 2;
+   
+   int result = fun(arr,goal,size) - fun(arr,goal-1,size);
+   cout<<result;
+ 
+   return 0;
+}
+
+
+
+    
 
