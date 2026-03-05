@@ -626,32 +626,66 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //CORRECT SOLUTION 
 //TC = O(2 * 2N) -> O(4N) -> O(n)
 //SC = O(1)
-int fun(int arr[],int goal,int size){
-    int temp{},sum{};
-    int left{},right{};
+// int fun(int arr[],int goal,int size){
+//     int temp{},sum{};
+//     int left{},right{};
     
-    while(right < size){
-        temp += arr[right];
-        while(temp > goal){
-            temp -= arr[left];
-            left++;
-        }
-       sum += (right - left + 1);
-       right++;
-   }
-   return sum;
-}
-int main() {
-   int arr[]{1,0,1,0,1};
-   int size = sizeof(arr)/sizeof(arr[0]);
-   int goal = 2;
+//     while(right < size){
+//         temp += arr[right];
+//         while(temp > goal){
+//             temp -= arr[left];
+//             left++;
+//         }
+//        sum += (right - left + 1);
+//        right++;
+//    }
+//    return sum;
+// }
+// int main() {
+//    int arr[]{1,0,1,0,1};
+//    int size = sizeof(arr)/sizeof(arr[0]);
+//    int goal = 2;
    
-   int result = fun(arr,goal,size) - fun(arr,goal-1,size);
-   cout<<result;
+//    int result = fun(arr,goal,size) - fun(arr,goal-1,size);
+//    cout<<result;
  
-   return 0;
-}
+//    return 0;
+// }
 
+
+//=================================================================================================
+//Q - 70  Climbing Stairs
+//WE START FROM PREV = 0 AND PREV2 = 1 (from starting) of FIBO SERIES 
+// int main() {
+//     int a = 45;
+//     long long prev = 0; // long long to prevent overflow
+//     long long prev2 = 1;
+//     long long curr{};
+//     for(int i = 0;i <= a;++i){
+//         curr = prev + prev2;
+//         prev = prev2;
+//         prev2 = curr;
+//     }
+//     cout<<prev;
+    
+//     return 0;
+// }
+
+//ANOTHER WAY
+//TO PREVENT OVERFLOW AND SKIP FIRST FIBO VALUE TILL i = 3 CUZ THERE ANS IS ALWASYS N (TILL 3)
+//SO WE START FROM i = 4 AS WE KNOW VALUE TILL i = 3
+
+int main() {
+    int a = 6;
+    int prev = 1;
+    int prev2 = 2;
+    int curr{};
+    for(int i = 3;i <= a;++i){
+        curr = prev + prev2;
+        prev = prev2;
+        prev2 = curr;
+    }
+    cout<<prev2;
 
 
     
