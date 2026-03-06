@@ -672,20 +672,66 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 // }
 
 //ANOTHER WAY
-//TO PREVENT OVERFLOW AND SKIP FIRST FIBO VALUE TILL i = 3 CUZ THERE ANS IS ALWASYS N (TILL 3)
+//TO PREVENT OVERFLOW AND SKIP FIRST FIBO VALUE TILL i = 3 CUZ THERE ANS IS ALWAYS N (TILL 3)
 //SO WE START FROM i = 4 AS WE KNOW VALUE TILL i = 3
 
-int main() {
-    int a = 6;
-    int prev = 1;
-    int prev2 = 2;
-    int curr{};
-    for(int i = 3;i <= a;++i){
-        curr = prev + prev2;
-        prev = prev2;
-        prev2 = curr;
+// int main() {
+//     int a = 6;
+//     int prev = 1;
+//     int prev2 = 2;
+//     int curr{};
+//     for(int i = 3;i <= a;++i){
+//         curr = prev + prev2;
+//         prev = prev2;
+//         prev2 = curr;
+//     }
+//     cout<<prev2;
+
+//======================================================================================================
+
+//Q - 1248. Count Number of Nice Subarrays
+
+//COMMON APPROACH
+//WE MISS SOME VALID WINDOW IF WE DONT USE THIS {Exactly K=AtMost(K)−AtMost(K−1)} 
+//IN THIS WE FIRST CALCULATE COUNT FOR K THEN WE SUBTRACT COUNT FOR VALUE OF K-1
+//EX. K = 2 count = 12 and k-1 = 1 count = 5 then ANS = K - (k-1) = 12 - 5 = 7.
+//WE PASS TWICE TO SAME FUNCTION
+int fun(int arr[],int k,int size){
+    if(k < 0)return 0;
+    
+    int count{};
+    unordered_map<int,int>hash;
+    int left{},right{};
+    
+    while(right < size){
+        hash[arr[right]]++;
+        
+        while(hash.size() > k){
+            hash[arr[left]]--;
+            if(hash[arr[left]] == 0){
+                hash.erase(arr[left]);
+            }
+            left++;
+        }
+        count += (right - left + 1);
+        right++;
     }
-    cout<<prev2;
+    return count;
+}
+int main() {
+    int arr[]{1,2,1,2,3};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int k = 2;
+    
+    int ans = fun(arr,k,size) - fun(arr,k-1,size);
+    cout<<ans;
+}
+
+
+//MUCH MORE ADVANCE APPROACH
+//INSTEAD OF GOING TWICE TO SAME FUN WE USES TWO HASH AND SOLVE FOR BOTH VALUE OF K AT SAME TIME
+
+
 
 
     
