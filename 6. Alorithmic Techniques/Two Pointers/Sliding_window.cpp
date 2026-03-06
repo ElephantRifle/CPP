@@ -729,9 +729,49 @@ int main() {
 
 
 //MUCH MORE ADVANCE APPROACH
-//INSTEAD OF GOING TWICE TO SAME FUN WE USES TWO HASH AND SOLVE FOR BOTH VALUE OF K AT SAME TIME
+//INSTEAD OF GOING TWICE TO SAME FUN WE USES TWO HASH,TWO LEFT POINTER AND SOLVE FOR BOTH VALUE OF K AT SAME TIME
 
+int fun(int arr[],int k,int size){
+    if(k < 0)return 0;
+    int count{};
+    
+    unordered_map<int,int>hash,hash2;
+    int left{},left2{};
+    int right{};
+    
+    while(right < size){
+        hash[arr[right]]++;
+        hash2[arr[right]]++;
+        
+        while(hash.size() > k){
+            hash[arr[left]]--;
+            if(hash[arr[left]] == 0){
+                hash.erase(arr[left]);
+            }
+            left++;
+        }
+          while(hash2.size() > k -1 ){
+            hash2[arr[left2]]--;
+            if(hash2[arr[left2]] == 0){
+                hash2.erase(arr[left2]);
+            }
+            left2++;
+        }
+        count += (left2 - left);
+        right++;
+    }
+    return count;
+}
+int main() {
+    int arr[]{1,2,1,2,3};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int k = 2;
+    
+    int ans = fun(arr,k,size);
+    cout<<ans;
 
+    return 0;
+}
 
 
     
