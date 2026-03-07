@@ -776,7 +776,7 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //===================================================================================================
 //===================================================================================================
 //Q - 349. Intersection of Two Arrays
-
+//TWO POINTERS
 int main(){
     vector<int>arr{4,9,5};
     vector<int>arr2{9,4,8,4};
@@ -789,14 +789,17 @@ int main(){
     vector<int>ans;
     
     while(right < arr2.size() && left < arr.size()){
+        
         if(arr[left] == arr2[right]){
-            if(ans.empty() || ans.back() != arr[left]){
+            if(ans.empty() || ans.back() != arr[left]){  //.back() -> to check last value inserted in vector
                 ans.push_back(arr[left]);
             }
             left++;
             right++;
+            
         }else if(arr[left] < arr2[right]){
             left++;
+            
         }else{
             right++;
         }
