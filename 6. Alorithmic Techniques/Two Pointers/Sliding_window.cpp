@@ -696,83 +696,117 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //IN THIS WE FIRST CALCULATE COUNT FOR K THEN WE SUBTRACT COUNT FOR VALUE OF K-1
 //EX. K = 2 count = 12 and k-1 = 1 count = 5 then ANS = K - (k-1) = 12 - 5 = 7.
 //WE PASS TWICE TO SAME FUNCTION
-int fun(int arr[],int k,int size){
-    if(k < 0)return 0;
+// int fun(int arr[],int k,int size){
+//     if(k < 0)return 0;
     
-    int count{};
-    unordered_map<int,int>hash;
-    int left{},right{};
+//     int count{};
+//     unordered_map<int,int>hash;
+//     int left{},right{};
     
-    while(right < size){
-        hash[arr[right]]++;
+//     while(right < size){
+//         hash[arr[right]]++;
         
-        while(hash.size() > k){
-            hash[arr[left]]--;
-            if(hash[arr[left]] == 0){
-                hash.erase(arr[left]);
-            }
-            left++;
-        }
-        count += (right - left + 1);
-        right++;
-    }
-    return count;
-}
-int main() {
-    int arr[]{1,2,1,2,3};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    int k = 2;
+//         while(hash.size() > k){
+//             hash[arr[left]]--;
+//             if(hash[arr[left]] == 0){
+//                 hash.erase(arr[left]);
+//             }
+//             left++;
+//         }
+//         count += (right - left + 1);
+//         right++;
+//     }
+//     return count;
+// }
+// int main() {
+//     int arr[]{1,2,1,2,3};
+//     int size = sizeof(arr)/sizeof(arr[0]);
+//     int k = 2;
     
-    int ans = fun(arr,k,size) - fun(arr,k-1,size);
-    cout<<ans;
-}
+//     int ans = fun(arr,k,size) - fun(arr,k-1,size);
+//     cout<<ans;
+// }
 
 
 //MUCH MORE ADVANCE APPROACH
 //INSTEAD OF GOING TWICE TO SAME FUN WE USES TWO HASH,TWO LEFT POINTER AND SOLVE FOR BOTH VALUE OF K AT SAME TIME
 
-int fun(int arr[],int k,int size){
-    if(k < 0)return 0;
-    int count{};
+// int fun(int arr[],int k,int size){
+//     if(k < 0)return 0;
+//     int count{};
     
-    unordered_map<int,int>hash,hash2;
-    int left{},left2{};
-    int right{};
+//     unordered_map<int,int>hash,hash2;
+//     int left{},left2{};
+//     int right{};
     
-    while(right < size){
-        hash[arr[right]]++;
-        hash2[arr[right]]++;
+//     while(right < size){
+//         hash[arr[right]]++;
+//         hash2[arr[right]]++;
         
-        while(hash.size() > k){
-            hash[arr[left]]--;
-            if(hash[arr[left]] == 0){
-                hash.erase(arr[left]);
+//         while(hash.size() > k){
+//             hash[arr[left]]--;
+//             if(hash[arr[left]] == 0){
+//                 hash.erase(arr[left]);
+//             }
+//             left++;
+//         }
+//           while(hash2.size() > k -1 ){
+//             hash2[arr[left2]]--;
+//             if(hash2[arr[left2]] == 0){
+//                 hash2.erase(arr[left2]);
+//             }
+//             left2++;
+//         }
+//         count += (left2 - left);
+//         right++;
+//     }
+//     return count;
+// }
+// int main() {
+//     int arr[]{1,2,1,2,3};
+//     int size = sizeof(arr)/sizeof(arr[0]);
+//     int k = 2;
+    
+//     int ans = fun(arr,k,size);
+//     cout<<ans;
+
+//     return 0;
+// }
+
+//===================================================================================================
+//===================================================================================================
+//Q - 349. Intersection of Two Arrays
+
+int main(){
+    vector<int>arr{4,9,5};
+    vector<int>arr2{9,4,8,4};
+    
+    int left{},right{};
+    
+    sort(arr.begin(),arr.end());
+    sort(arr2.begin(),arr2.end());
+    
+    vector<int>ans;
+    
+    while(right < arr2.size() && left < arr.size()){
+        if(arr[left] == arr2[right]){
+            if(ans.empty() || ans.back() != arr[left]){
+                ans.push_back(arr[left]);
             }
             left++;
+            right++;
+        }else if(arr[left] < arr2[right]){
+            left++;
+        }else{
+            right++;
         }
-          while(hash2.size() > k -1 ){
-            hash2[arr[left2]]--;
-            if(hash2[arr[left2]] == 0){
-                hash2.erase(arr[left2]);
-            }
-            left2++;
-        }
-        count += (left2 - left);
-        right++;
     }
-    return count;
-}
-int main() {
-    int arr[]{1,2,1,2,3};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    int k = 2;
+    for(auto val : ans){
+        cout<<val<<" ";
+    }
     
-    int ans = fun(arr,k,size);
-    cout<<ans;
-
     return 0;
 }
-
 
     
 
