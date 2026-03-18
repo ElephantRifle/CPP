@@ -823,7 +823,6 @@ int main() {
     sort(arr, arr + size);
     
     int target = 0;
-    unordered_map<int,int>map;
     int sum{};
     
     for(int i = 0;i < size;++i){
@@ -847,6 +846,49 @@ int main() {
                 right--;
                 
             }else {
+                left++;
+            }
+        }
+    }
+
+    return 0;
+}
+
+//BIT MORE OPTIMIZED
+int main() {
+
+    int arr[]{-1,0,1,2,-1,-4};
+    int size = sizeof(arr)/sizeof(arr[0]);
+
+    sort(arr, arr + size);
+
+    for(int i = 0; i < size; ++i){
+
+        if(arr[i] > 0) break;
+
+        if(i > 0 && arr[i] == arr[i-1]) continue;
+
+        int left = i + 1;
+        int right = size - 1;
+
+        while(left < right){
+
+            int sum = arr[i] + arr[left] + arr[right];
+
+            if(sum == 0){
+
+                cout << arr[i] << " " << arr[left] << " " << arr[right] << endl;
+
+                left++;
+                right--;
+
+                while(left < right && arr[left] == arr[left-1]) left++;
+                while(left < right && arr[right] == arr[right+1]) right--;
+            }
+            else if(sum > 0){
+                right--;
+            }
+            else{
                 left++;
             }
         }
