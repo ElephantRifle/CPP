@@ -777,39 +777,82 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //===================================================================================================
 //Q - 349. Intersection of Two Arrays
 //TWO POINTERS
-int main(){
-    vector<int>arr{4,9,5};
-    vector<int>arr2{9,4,8,4};
+// int main(){
+//     vector<int>arr{4,9,5};
+//     vector<int>arr2{9,4,8,4};
     
-    int left{},right{};
+//     int left{},right{};
     
-    sort(arr.begin(),arr.end());
-    sort(arr2.begin(),arr2.end());
+//     sort(arr.begin(),arr.end());
+//     sort(arr2.begin(),arr2.end());
     
-    vector<int>ans;
+//     vector<int>ans;
     
-    while(right < arr2.size() && left < arr.size()){
+//     while(right < arr2.size() && left < arr.size()){
         
-        if(arr[left] == arr2[right]){
-            if(ans.empty() || ans.back() != arr[left]){  //.back() -> to check last value inserted in vector
-                ans.push_back(arr[left]);
+//         if(arr[left] == arr2[right]){
+//             if(ans.empty() || ans.back() != arr[left]){  //.back() -> to check last value inserted in vector
+//                 ans.push_back(arr[left]);
+//             }
+//             left++;
+//             right++;
+            
+//         }else if(arr[left] < arr2[right]){
+//             left++;
+            
+//         }else{
+//             right++;
+//         }
+//     }
+//     for(auto val : ans){
+//         cout<<val<<" ";
+//     }
+    
+//     return 0;
+// }
+
+//==============================================================================================
+//==============================================================================================
+
+//Q - 
+
+int main() {
+    int arr[]{-1,0,1,2,-1,-4};
+    
+    int size = sizeof(arr)/sizeof(arr[0]);
+    sort(arr, arr + size);
+    
+    int target = 0;
+    unordered_map<int,int>map;
+    int sum{};
+    
+    for(int i = 0;i < size;++i){
+        if(i > 0 && arr[i] == arr[i-1]) continue;//to skip 
+        
+        int left = i + 1;
+        int right = size - 1;
+        
+        while(left < right){
+            sum = arr[i] + arr[left]+arr[right];
+            
+            if(sum == 0){
+                cout << arr[i] << " " << arr[left] << " " << arr[right] << endl;
+                left++;
+                right--;
+                
+                while(left < right && arr[left] == arr[left-1]) left++;
+                while(left < right && arr[right] == arr[right+1]) right--;
+                
+            }else if(sum > 0){
+                right--;
+                
+            }else {
+                left++;
             }
-            left++;
-            right++;
-            
-        }else if(arr[left] < arr2[right]){
-            left++;
-            
-        }else{
-            right++;
         }
     }
-    for(auto val : ans){
-        cout<<val<<" ";
-    }
-    
+
     return 0;
 }
-
     
 
