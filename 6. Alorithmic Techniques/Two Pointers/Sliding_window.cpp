@@ -814,7 +814,7 @@ whose sum is ≤ goal using a sliding window (atMost(goal)).
 //==============================================================================================
 //==============================================================================================
 
-//Q - 
+//Q - 15 3Sum
 
 int main() {
     int arr[]{-1,0,1,2,-1,-4};
@@ -827,7 +827,7 @@ int main() {
     int sum{};
     
     for(int i = 0;i < size;++i){
-        if(i > 0 && arr[i] == arr[i-1]) continue;//to skip 
+        if(i > 0 && arr[i] == arr[i-1]) continue;  //to skip duplicate values
         
         int left = i + 1;
         int right = size - 1;
@@ -840,8 +840,8 @@ int main() {
                 left++;
                 right--;
                 
-                while(left < right && arr[left] == arr[left-1]) left++;
-                while(left < right && arr[right] == arr[right+1]) right--;
+                while(left < right && arr[left] == arr[left-1]) left++;     //to skip duplicate values
+                while(left < right && arr[right] == arr[right+1]) right--;  //to skip duplicate values
                 
             }else if(sum > 0){
                 right--;
